@@ -168,12 +168,12 @@ export default function Contact() {
                       lines: ["estakerala@gmailcom"],
                       color: "from-blue-500 to-cyan-500",
                     },
-                    {
-                      icon: Phone,
-                      title: "Phone",
-                      lines: ["+91 9495-270-555", "(Mon-sat, 9AM-5PM IST)"],
-                      color: "from-green-500 to-emerald-500",
-                    },
+                    // {
+                    //   icon: Phone,
+                    //   title: "Phone",
+                    //   lines: ["+91 9495-270-555", "(Mon-sat, 9AM-5PM IST)"],
+                    //   color: "from-green-500 to-emerald-500",
+                    // },
                     {
                       icon: MapPin,
                       title: "Office",
@@ -206,7 +206,7 @@ export default function Contact() {
               </div>
 
               {/* CTA Card */}
-              <div className="p-6 rounded-2xl bg-gradient-to-br from-primary/10 to-blue-500/10 border border-primary/20">
+              {/* <div className="p-6 rounded-2xl bg-gradient-to-br from-primary/10 to-blue-500/10 border border-primary/20">
                 <h4 className="font-semibold text-foreground mb-2">Need immediate help?</h4>
                 <p className="text-sm text-muted-foreground mb-4">
                   Our team is available 24/7 to assist you with any urgent matters.
@@ -215,7 +215,7 @@ export default function Contact() {
                   Schedule a Call
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
-              </div>
+              </div> */}
             </div>
           </SlideIn>
         </div>

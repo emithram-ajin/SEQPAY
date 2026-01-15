@@ -33,30 +33,22 @@ export default function MobileRechargePage() {
   ];
 
   return (
-    <div  id="mobilerecharge" className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-6">
+    <div id="mobilerecharge" className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 pt-8">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
         {/* Left Section */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
-          className="space-y-6"
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="space-y-6 justify-center flex flex-col items-center"
         >
-          <h1 className="text-4xl font-bold text-slate-800">Mobile Recharge</h1>
-          <p className="text-slate-600 leading-relaxed">
-            Recharging mobile and data cards is now easier than ever. Seqpay
-            allows retailers to offer instant mobile recharge services with
-            real-time processing across all major operators.
-          </p>
-
-          <Card className="rounded-2xl shadow-lg">
-            <CardContent className="p-6 space-y-4">
-              <h3 className="text-xl font-semibold">Quick Recharge</h3>
-              <div className="flex items-center justify-between">
-                <span className="text-lg font-medium">₹300</span>
-                <Button className="rounded-xl">Recharge</Button>
-              </div>
-            </CardContent>
-          </Card>
+          <div className="w-full max-w-xl">
+            <img
+              src="/mobilerecharge.png" // replace with your image path
+              alt="Mobile Recharge"
+              className="w-full h-auto rounded-2xl shadow-lg"
+            />
+          </div>
         </motion.div>
 
         {/* Right Section */}
@@ -64,7 +56,7 @@ export default function MobileRechargePage() {
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
         >
-          <Card className="rounded-2xl shadow-xl">
+          <Card className="rounded-2xl shadow-xl p-6">
             <CardContent className="p-6 space-y-4">
               <h2 className="text-2xl font-bold text-blue-700">
                 Create a Free Seqpay Account
@@ -79,9 +71,38 @@ export default function MobileRechargePage() {
               />
               <select className="w-full border rounded-lg p-2">
                 <option>Select your state</option>
+                <option>Andhra Pradesh</option>
+                <option>Arunachal Pradesh</option>
+                <option>Assam</option>
+                <option>Bihar</option>
+                <option>Chhattisgarh</option>
+                <option>Gujarat</option>
+                <option>Haryana</option>
+                <option>Himachal Pradesh</option>
+                <option>Jammu & Kashmir</option>
+                <option>Jharkhand</option>
+                <option>Karnataka</option>
+                <option>Kerala</option>
+                <option>Madhya Pradesh</option>
+                <option>Maharashtra</option>
+                <option>Manipur</option>
+                <option>Meghalaya</option>
+                <option>Mizoram</option>
+                <option>Nagaland</option>
+                <option>Odisha</option>
+                <option>Punjab</option>
               </select>
               <select className="w-full border rounded-lg p-2">
                 <option>Select preferred language</option>
+                <option>Malayalam</option>
+                <option>English</option>
+                <option>Hindi</option>
+                <option>Gujarati</option>
+                <option>Bengali</option>
+                <option>Tamil</option>
+                <option>Telugu</option>
+                <option>Kannada</option>
+                <option>Marathi</option>
               </select>
               <Button className="w-full rounded-xl">Submit</Button>
             </CardContent>
@@ -182,19 +203,25 @@ export default function MobileRechargePage() {
       {/* FAQ Section */}
       <div className="max-w-4xl mx-auto mt-16">
         <h2 className="text-3xl font-bold mb-6 text-center">FAQ</h2>
-        <div className="space-y-4">
+        <div className="space-y-4 ">
           {faqs.map((faq, i) => (
             <Card key={i} className="rounded-xl">
               <CardContent
-                className="p-4 cursor-pointer"
+                className=" cursor-pointer"
                 onClick={() => setOpenFaq(openFaq === i ? null : i)}
               >
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center pt-4">
                   <p className="font-medium">{faq.q}</p>
                   <ChevronDown
-                    className={`transition-transform ${openFaq === i ? "rotate-180" : ""}`}
+                    className={`
+                  w-5 h-5
+                  transition-transform duration-300 ease-in-out
+                  will-change-transform
+                  ${openFaq === i ? "rotate-180" : "rotate-0"}
+                  `}
                   />
                 </div>
+
                 {openFaq === i && (
                   <p className="mt-3 text-slate-600">{faq.a}</p>
                 )}

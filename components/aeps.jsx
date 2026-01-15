@@ -39,35 +39,25 @@ export default function AEPSPage() {
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
-          className="space-y-6"
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="space-y-6 justify-center flex flex-col items-center"
         >
-          <h1 className="text-4xl font-bold text-slate-800">AEPS Services by SeqPay</h1>
-          <p className="text-slate-600">
-            Powered by <strong>ESTA Enterprises Private Limited</strong>
-          </p>
-          <p className="text-slate-600 leading-relaxed">
-            In today’s fast-growing digital India, easy access to banking services is essential. SeqPay offers AEPS (Aadhaar Enabled Payment System) services that make basic banking simple, secure, and accessible for everyone.
-          </p>
-
-          <Card className="rounded-2xl shadow-lg">
-            <CardContent className="p-6 space-y-3">
-              <h3 className="text-xl font-semibold">AEPS Transactions</h3>
-              <ul className="list-disc pl-6 text-slate-600">
-                <li>Cash Withdrawal</li>
-                <li>Balance Enquiry</li>
-                <li>Mini Statement</li>
-                <li>Aadhaar to Aadhaar Transfer</li>
-              </ul>
-            </CardContent>
-          </Card>
+          <div className="w-full max-w-xl">
+            <img
+              src="/aeps.png" // replace with your image path
+              alt="Mobile Recharge"
+              className="w-full h-auto rounded-2xl shadow-lg"
+            />
+          </div>
         </motion.div>
+
 
         {/* Right Section – CTA */}
         <motion.div
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
         >
-          <Card className="rounded-2xl shadow-xl">
+          <Card className="rounded-2xl shadow-xl p-5">
             <CardContent className="p-6 space-y-4">
               <h2 className="text-2xl font-bold text-blue-700">Start AEPS with SeqPay</h2>
               <input placeholder="Aadhaar Number" className="w-full border rounded-lg p-2" />
@@ -147,10 +137,15 @@ export default function AEPSPage() {
                 className="p-4 cursor-pointer"
                 onClick={() => setOpenFaq(openFaq === i ? null : i)}
               >
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center pt-4">
                   <p className="font-medium">{faq.q}</p>
                   <ChevronDown
-                    className={`transition-transform ${openFaq === i ? "rotate-180" : ""}`}
+                    className={`
+                  w-5 h-5
+                  transition-transform duration-300 ease-in-out
+                  will-change-transform
+                  ${openFaq === i ? "rotate-180" : "rotate-0"}
+                  `}
                   />
                 </div>
                 {openFaq === i && <p className="mt-3 text-slate-600">{faq.a}</p>}
