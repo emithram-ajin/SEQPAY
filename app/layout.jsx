@@ -1,6 +1,9 @@
 import { Inter, DM_Sans, JetBrains_Mono } from "next/font/google"
 import "./globals.css"
 
+import Navbar from "@/components/navbar.jsx"
+import Footer from "@/components/footer.jsx"
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -29,7 +32,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} ${dmSans.variable} ${jetbrainsMono.variable}`}>
-      <body className="font-sans">{children}</body>
+      <body className="font-sans">
+        <Navbar />
+        {children}
+        <Footer />        
+        </body>
     </html>
   )
 }

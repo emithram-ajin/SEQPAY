@@ -33,7 +33,7 @@ export default function AEPSPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 py-26">
       {/* Hero Section */}
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
         <motion.div

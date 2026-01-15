@@ -33,7 +33,7 @@ export default function MobileRechargePage() {
   ];
 
   return (
-    <div id="mobilerecharge" className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 pt-8">
+    <div id="mobilerecharge" className=" py-26 min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 ">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
         {/* Left Section */}
         <motion.div

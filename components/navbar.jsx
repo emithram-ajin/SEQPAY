@@ -8,7 +8,8 @@ import { useRouter } from "next/navigation"
 import { usePathname } from "next/navigation"
 
 const navLinks = [
-  { name: "Home", href: "home", type: "scroll" },
+  { name: "Home", href: "/", type: "scroll" },
+  { name: "About Us", href: "/aboutus", type: "page" },
   {
     name: "Services Menu",
     type: "submenu",
@@ -30,7 +31,6 @@ const navLinks = [
       },
     ],
   },
-  { name: "About Us", href: "/aboutus", type: "page" },
   { name: "Contact", href: "/contact", type: "page" },
 ]
 
@@ -56,37 +56,39 @@ export default function Navbar() {
 
     // If link is string, find in navLinks or submenus
     if (typeof link === "string") {
-      const found = navLinks.flatMap(l =>
-        l.submenu ? l.submenu.flatMap(c => c.items) : l
-      ).find(l => l.href === link)
-      link = found || { href: link, type: "scroll" }
+      const found = navLinks
+        .flatMap(l => (l.submenu ? l.submenu.flatMap(c => c.items) : [l]))
+        .find(l => l.href === link)
+
+      link = found || { href: "/", type: "scroll" }
     }
 
-    // Page navigation
+    // PAGE navigation
     if (link.type === "page") {
       router.push(link.href)
       return
     }
 
-    // Scroll links
+    // HOME scroll (NO #)
     if (pathname !== "/") {
-      router.push(`/#${link.href}`)
+      router.push("/")
       return
     }
 
-    const element = document.getElementById(link.href)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" })
-    }
+    // Already on home → smooth scroll to top
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    })
   }
+
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-background/95 backdrop-blur-xl shadow-sm border-b border-border/50"
-          : "bg-transparent"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
+        ? "bg-background/95 backdrop-blur-xl shadow-sm border-b border-border/50"
+        : "bg-transparent"
+        }`}
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
@@ -207,9 +209,8 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         <div
-          className={`md:hidden overflow-hidden transition-all duration-300 ease-out ${
-            mobileMenuOpen ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
-          }`}
+          className={`md:hidden overflow-hidden transition-all duration-300 ease-out ${mobileMenuOpen ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
+            }`}
         >
           <div className="py-4 border-t border-border/50">
             <div className="flex flex-col gap-1">
