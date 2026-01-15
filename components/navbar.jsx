@@ -137,10 +137,11 @@ export default function Navbar() {
                     </button>
                     {openSubmenu === link.name && (
                       <div
-                        className="absolute top-full left-0 mt-2 w-80 bg-background/95 backdrop-blur-xl border border-border/50 rounded-xl shadow-xl p-4 grid grid-cols-2 gap-4"
+                        className="absolute top-full left-0 pt-2 w-80"
                         onMouseEnter={() => setOpenSubmenu(link.name)}
                         onMouseLeave={() => setOpenSubmenu(null)}
                       >
+                        <div className="bg-background/95 backdrop-blur-xl border border-border/50 rounded-xl shadow-xl p-4 grid grid-cols-2 gap-4">
                         {link.submenu.map(category => (
                           <div key={category.title}>
                             <h4 className="text-xs font-semibold text-primary mb-2">
@@ -160,6 +161,7 @@ export default function Navbar() {
                             </div>
                           </div>
                         ))}
+                        </div>
                       </div>
                     )}
                   </>
