@@ -9,7 +9,7 @@ export default function Home() {
     <main>
       <Hero />
       <TrustedBy />
-      <Features />
+      {/* <Features /> */}
       <HowItWorks />
       <Testimonials />
     </main>

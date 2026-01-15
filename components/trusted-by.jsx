@@ -1,15 +1,40 @@
 "use client"
 
-import { FadeIn } from "./motion-wrapper"
-import { Shield, CreditCard, Smartphone, Wallet, Building2, Banknote } from "lucide-react"
+import { FadeIn, ScaleIn } from "./motion-wrapper"
+import { Shield, Smartphone, CreditCard, Banknote, Receipt, Zap } from "lucide-react"
+import { motion } from "framer-motion"
 
-const partners = [
-  { name: "Visa", display: "VISA", color: "from-blue-600 to-blue-700", icon: CreditCard },
-  { name: "MasterCard", display: "MasterCard", color: "from-red-500 to-orange-500", icon: CreditCard },
-  { name: "UPI", display: "UPI", color: "from-green-600 to-emerald-600", icon: Smartphone },
-  { name: "RuPay", display: "RuPay", color: "from-purple-600 to-indigo-600", icon: Banknote },
-  { name: "American Express", display: "AMEX", color: "from-gray-700 to-gray-800", icon: Building2 },
-  { name: "Google Pay", display: "GPay", color: "from-yellow-500 to-orange-500", icon: Wallet },
+const services = [
+  { 
+    icon: Smartphone, 
+    title: "Aadhaar Enabled Payment System (AEPS)", 
+    desc: "Turn your shop into a bank branch. Allow customers to withdraw cash, check their account balance, and get mini-statements using only their Aadhaar number and biometric authentication.",
+    color: "from-blue-600 to-blue-700"
+  },
+  { 
+    icon: CreditCard, 
+    title: "Domestic Money Transfer (DMT)", 
+    desc: "Send money to any bank account across India instantly. Our secure channel ensures that funds reach the recipient in seconds, even on holidays.",
+    color: "from-green-600 to-emerald-600"
+  },
+  { 
+    icon: Banknote, 
+    title: "Mini ATM (Micro ATM)", 
+    desc: "Offer cash withdrawal services through Debit Cards. Our compact, portable Micro-ATM devices are easy to use and provide a convenient way for customers to access their money.",
+    color: "from-purple-600 to-indigo-600"
+  },
+  { 
+    icon: Receipt, 
+    title: "BBPS & Utility Bill Payments", 
+    desc: "Simplify life for your customers by accepting payments for Electricity, Water, Gas, Landline, and Broadband. Powered by Bharat Bill Pay (BBPS) for maximum reliability.",
+    color: "from-cyan-600 to-blue-600"
+  },
+  { 
+    icon: Smartphone, 
+    title: "Mobile & DTH Recharge", 
+    desc: "Instant recharges for all major telecom operators and DTH service providers with high success rates and attractive margins.",
+    color: "from-orange-500 to-red-500"
+  },
 ]
 
 export default function TrustedBy() {
@@ -26,69 +51,62 @@ export default function TrustedBy() {
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
               <Shield className="w-4 h-4" />
-              Secure & Trusted
+              Comprehensive Solutions
             </div>
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-              Payment Methods We <span className="text-gradient">Support</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Our Core <span className="text-gradient">Services</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Seamlessly integrated with leading payment providers for maximum security and convenience
+              Empowering your business with complete digital banking and payment solutions
             </p>
           </div>
         </FadeIn>
 
-        <FadeIn delay={0.2}>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {partners.map((partner, index) => {
-              const Icon = partner.icon
-              return (
-                <div
-                  key={partner.name}
-                  className="group relative p-6 rounded-2xl bg-background/50 backdrop-blur border border-border/50 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/10 transition-all duration-500 cursor-pointer"
-                  style={{ animationDelay: `${index * 150}ms` }}
-                >
-                  {/* Gradient background */}
-                  <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${partner.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
-                  
-                  <div className="relative flex flex-col items-center text-center space-y-3">
-                    {/* Icon container */}
-                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${partner.color} p-0.5 group-hover:scale-110 transition-transform duration-300`}>
-                      <div className="w-full h-full rounded-xl bg-background flex items-center justify-center">
-                        <Icon className="w-5 h-5 text-foreground" />
-                      </div>
-                    </div>
-                    
-                    {/* Partner name */}
-                    <div>
-                      <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
-                        {partner.display}
-                      </h3>
-                      <div className="w-8 h-0.5 bg-gradient-to-r from-transparent via-primary/50 to-transparent mx-auto mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="grid md:grid-cols-2 gap-8">
+          {services.map((service, idx) => (
+            <ScaleIn key={idx} delay={0.1 * idx}>
+              <motion.div 
+                className="group relative p-8 rounded-2xl bg-card border border-border hover:border-primary/50 hover:shadow-lg transition-all overflow-hidden"
+                whileHover={{ 
+                  scale: 1.02,
+                  boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+                }}
+                transition={{ duration: 0.2 }}
+              >
+                {/* Gradient overlay on hover */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
+                
+                <div className="relative">
+                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${service.color} p-0.5 mb-4`}>
+                    <div className="w-full h-full rounded-xl bg-background flex items-center justify-center">
+                      <service.icon className="w-6 h-6 text-foreground" />
                     </div>
                   </div>
-                  
-                  {/* Shine effect */}
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+                  <h3 className="text-xl font-bold mb-3">{service.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{service.desc}</p>
                 </div>
-              )
-            })}
-          </div>
-        </FadeIn>
+
+                {/* Bottom gradient line */}
+                <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${service.color} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`} />
+              </motion.div>
+            </ScaleIn>
+          ))}
+        </div>
 
         {/* Trust indicators */}
         <FadeIn delay={0.4}>
           <div className="mt-16 flex flex-wrap items-center justify-center gap-8 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              <span>PCI DSS Compliant</span>
+              <span>Safe & Secure</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" style={{ animationDelay: '0.5s' }} />
-              <span>256-bit SSL Encryption</span>
+              <span>Instant Settlements</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-purple-500 animate-pulse" style={{ animationDelay: '1s' }} />
-              <span>99.9% Uptime</span>
+              <span>24/7 Support</span>
             </div>
           </div>
         </FadeIn>

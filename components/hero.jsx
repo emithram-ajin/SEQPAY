@@ -1,208 +1,257 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Shield, Zap, Play } from "lucide-react"
-import { FadeIn, ScaleIn } from "./motion-wrapper"
-import { useEffect, useState } from "react"
+import { ArrowRight, Shield, Zap, Smartphone, CreditCard, Banknote, Receipt, Users, TrendingUp, Clock, Headphones } from "lucide-react"
+import { FadeIn, ScaleIn, SlideIn } from "./motion-wrapper"
+import { motion } from "framer-motion"
 
 export default function Hero() {
-  const [counters, setCounters] = useState({ revenue: 0, transactions: 0, rate: 0, users: 0 })
+  const services = [
+    { 
+      icon: Smartphone, 
+      title: "Aadhaar Enabled Payment System (AEPS)", 
+      desc: "Turn your shop into a bank branch. Allow customers to withdraw cash, check their account balance, and get mini-statements using only their Aadhaar number and biometric authentication." 
+    },
+    { 
+      icon: CreditCard, 
+      title: "Domestic Money Transfer (DMT)", 
+      desc: "Send money to any bank account across India instantly. Our secure channel ensures that funds reach the recipient in seconds, even on holidays." 
+    },
+    { 
+      icon: Banknote, 
+      title: "Mini ATM (Micro ATM)", 
+      desc: "Offer cash withdrawal services through Debit Cards. Our compact, portable Micro-ATM devices are easy to use and provide a convenient way for customers to access their money." 
+    },
+    { 
+      icon: Receipt, 
+      title: "BBPS & Utility Bill Payments", 
+      desc: "Simplify life for your customers by accepting payments for Electricity, Water, Gas, Landline, and Broadband. Powered by Bharat Bill Pay (BBPS) for maximum reliability." 
+    },
+    { 
+      icon: Smartphone, 
+      title: "Mobile & DTH Recharge", 
+      desc: "Instant recharges for all major telecom operators and DTH service providers with high success rates and attractive margins." 
+    },
+  ]
 
-  useEffect(() => {
-    const targets = { revenue: 1245890, transactions: 2847, rate: 99.2, users: 1234 }
-    const duration = 2000
-    const steps = 60
-    const interval = duration / steps
+  const benefits = [
+    { 
+      icon: Shield, 
+      title: "Trust & Reliability", 
+      desc: "As a unit of ESTA ENTERPRISES PVT LTD, we prioritize transparency and security in every transaction.",
+      color: "from-green-600 to-emerald-600"
+    },
+    { 
+      icon: TrendingUp, 
+      title: "Superior Earnings", 
+      desc: "Benefit from the best commission structures in the industry and grow your monthly income.",
+      color: "from-blue-600 to-cyan-600"
+    },
+    { 
+      icon: Zap, 
+      title: "Advanced Technology", 
+      desc: "Experience a user-friendly interface with a high-speed backend to ensure seamless transactions.",
+      color: "from-purple-600 to-indigo-600"
+    },
+    { 
+      icon: Clock, 
+      title: "Instant Settlements", 
+      desc: "Access your hard-earned money anytime with our 24/7 instant settlement feature.",
+      color: "from-orange-500 to-red-500"
+    },
+    { 
+      icon: Headphones, 
+      title: "Continuous Support", 
+      desc: "Our dedicated helpdesk is always ready to assist you with any technical or operational queries.",
+      color: "from-pink-600 to-rose-600"
+    },
+  ]
 
-    let step = 0
-    const timer = setInterval(() => {
-      step++
-      const progress = step / steps
-      const easeOut = 1 - Math.pow(1 - progress, 3)
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  }
 
-      setCounters({
-        revenue: Math.floor(targets.revenue * easeOut),
-        transactions: Math.floor(targets.transactions * easeOut),
-        rate: Math.floor(targets.rate * easeOut * 10) / 10,
-        users: Math.floor(targets.users * easeOut),
-      })
-
-      if (step >= steps) clearInterval(timer)
-    }, interval)
-
-    return () => clearInterval(timer)
-  }, [])
-
-  const formatRevenue = (num) => {
-    return new Intl.NumberFormat("en-IN", {
-      style: "currency",
-      currency: "INR",
-      maximumFractionDigits: 0,
-    }).format(num)
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5
+      }
+    }
   }
 
   return (
     <section id="home" className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden">
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" />
-        <div
-          className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"
-          style={{ animationDelay: "1s" }}
+      <motion.div 
+        className="absolute inset-0 -z-10"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        <motion.div 
+          className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" 
+          animate={{ 
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3]
+          }}
+          transition={{ 
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
         />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-primary/5 to-cyan-500/5 rounded-full blur-3xl" />
-      </div>
+        <motion.div 
+          className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" 
+          animate={{ 
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3]
+          }}
+          transition={{ 
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1
+          }}
+        />
+        <motion.div 
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-primary/5 to-cyan-500/5 rounded-full blur-3xl"
+          animate={{ 
+            rotate: 360
+          }}
+          transition={{ 
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        />
+      </motion.div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-4xl mx-auto">
+        {/* Hero Header */}
+        <div className="text-center max-w-4xl mx-auto mb-20">
           <FadeIn delay={0}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary/10 to-blue-500/10 border border-primary/20 text-primary text-sm font-medium mb-8 hover:shadow-lg hover:shadow-primary/10 transition-shadow duration-300 cursor-default">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary/10 to-blue-500/10 border border-primary/20 text-primary text-sm font-medium mb-8">
               <Zap className="w-4 h-4 animate-pulse" />
-              <span>Trusted by 10,000+ businesses worldwide</span>
-              <ArrowRight className="w-3 h-3" />
+              <span>A unit of ESTA ENTERPRISES PVT LTD</span>
             </div>
           </FadeIn>
 
           <FadeIn delay={0.1}>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-balance mb-6">
-              <span className="text-foreground">Fast, Secure</span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+              <span className="text-foreground">Your Gateway to</span>
               <br />
-              <span className="text-gradient">Online Payments</span>
-              <br />
-              <span className="text-foreground">for Your Business</span>
+              <span className="text-gradient">Digital Financial Freedom</span>
             </h1>
           </FadeIn>
 
           <FadeIn delay={0.2}>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 text-pretty leading-relaxed">
-              Accept payments seamlessly with SeqPay. Support for UPI, credit cards, debit cards, and netbanking with
-              industry-leading security and real-time analytics.
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
+              Empowering retailers and entrepreneurs with secure, fast, and reliable banking solutions. Join SeqPay and transform your business today.
             </p>
           </FadeIn>
 
-          {/* <FadeIn delay={0.3}>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button
-                size="lg"
-                className="w-full sm:w-auto h-12 px-8 text-base font-semibold bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90 shadow-xl shadow-primary/25 hover:shadow-2xl hover:shadow-primary/30 hover:-translate-y-0.5 transition-all duration-300 btn-shine"
-              >
-                Get Started Free
-                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="w-full sm:w-auto h-12 px-8 text-base font-semibold bg-background/50 backdrop-blur border-border/50 hover:bg-muted/50 hover:border-primary/30 hover:-translate-y-0.5 transition-all duration-300 group"
-              >
-                <Play className="w-5 h-5 mr-2 text-primary group-hover:scale-110 transition-transform" />
-                Watch Demo
-              </Button>
-            </div>
-          </FadeIn> */}
+          <FadeIn delay={0.3}>
+            <motion.div 
+              className="flex flex-wrap items-center justify-center gap-4"
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              <motion.div variants={itemVariants}>
+                <Button size="lg" className="gap-2" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  Become a Retailer <ArrowRight className="w-4 h-4" />
+                </Button>
+              </motion.div>
+              <motion.div variants={itemVariants}>
+                <Button size="lg" variant="outline" className="gap-2" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  Become a Distributor
+                </Button>
+              </motion.div>
+            </motion.div>
+          </FadeIn>
 
           <FadeIn delay={0.4}>
-            <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 mt-10 text-sm text-muted-foreground">
+            <div className="flex flex-wrap items-center justify-center gap-6 mt-10">
               <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20">
                 <Shield className="w-4 h-4 text-green-600" />
-                <span className="font-medium text-green-700">PCI DSS Compliant</span>
+                <span className="font-medium text-green-700">Safe</span>
               </div>
               <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20">
                 <Shield className="w-4 h-4 text-blue-600" />
-                <span className="font-medium text-blue-700">256-bit Encryption</span>
+                <span className="font-medium text-blue-700">Secure</span>
               </div>
               <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20">
                 <Shield className="w-4 h-4 text-purple-600" />
-                <span className="font-medium text-purple-700">RBI Authorized</span>
+                <span className="font-medium text-purple-700">Seamless</span>
               </div>
             </div>
           </FadeIn>
         </div>
 
-        {/* <ScaleIn delay={0.5}>
-          <div className="mt-16 md:mt-20 relative">
-            <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 via-blue-500/20 to-cyan-500/20 rounded-3xl blur-2xl opacity-60" />
+        {/* About Section */}
+        <FadeIn delay={0.5}>
+          <div className="max-w-4xl mx-auto text-center mb-20">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">About SeqPay</h2>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              SeqPay is a leading Fintech platform operated under ESTA ENTERPRISES PVT LTD. We are committed to financial inclusion by bringing essential banking and payment services to every doorstep. Our robust technology enables local retailers to serve as a digital hub for their community, providing everything from cash withdrawals to utility payments.
+            </p>
+          </div>
+        </FadeIn>
 
-            <div className="relative bg-gradient-to-br from-slate-50 to-slate-100 rounded-2xl md:rounded-3xl p-4 md:p-8 border border-border/50 shadow-2xl">
-              <div className="bg-background rounded-xl md:rounded-2xl shadow-xl overflow-hidden border border-border/50">
-                <div className="h-10 md:h-12 bg-muted/50 flex items-center px-4 gap-2 border-b border-border/50">
-                  <div className="flex gap-2">
-                    <div className="w-3 h-3 rounded-full bg-red-400 hover:bg-red-500 transition-colors cursor-pointer" />
-                    <div className="w-3 h-3 rounded-full bg-yellow-400 hover:bg-yellow-500 transition-colors cursor-pointer" />
-                    <div className="w-3 h-3 rounded-full bg-green-400 hover:bg-green-500 transition-colors cursor-pointer" />
-                  </div>
-                  <div className="flex-1 flex justify-center">
-                    <div className="px-4 py-1.5 bg-background rounded-lg text-xs text-muted-foreground font-mono">
-                      dashboard.seqpay.com
-                    </div>
-                  </div>
-                </div>
+        
 
-                <div className="p-6 md:p-8">
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                    {[
-                      {
-                        label: "Total Revenue",
-                        value: formatRevenue(counters.revenue),
-                        trend: "+12.5%",
-                        color: "text-green-600",
-                      },
-                      {
-                        label: "Transactions",
-                        value: counters.transactions.toLocaleString(),
-                        trend: "+8.2%",
-                        color: "text-green-600",
-                      },
-                      { label: "Success Rate", value: `${counters.rate}%`, trend: "+0.5%", color: "text-green-600" },
-                      {
-                        label: "Active Users",
-                        value: counters.users.toLocaleString(),
-                        trend: "+15.3%",
-                        color: "text-green-600",
-                      },
-                    ].map((stat, index) => (
-                      <div
-                        key={stat.label}
-                        className="p-4 bg-gradient-to-br from-muted/30 to-muted/50 rounded-xl border border-border/30 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 cursor-default"
-                        style={{ animationDelay: `${index * 100}ms` }}
+        {/* Benefits Section */}
+        <FadeIn delay={0.7}>
+          <div className="mb-20">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+              Why Partner with <span className="text-gradient">SeqPay?</span>
+            </h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {benefits.map((benefit, idx) => (
+                <ScaleIn key={idx} delay={0.1 * idx}>
+                  <motion.div 
+                    className="group relative p-6 rounded-2xl bg-gradient-to-br from-primary/5 to-blue-500/5 border border-primary/20 hover:shadow-lg transition-all overflow-hidden"
+                    whileHover={{ 
+                      scale: 1.05,
+                      borderColor: "rgba(var(--primary), 0.5)"
+                    }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {/* Gradient overlay on hover */}
+                    <div className={`absolute inset-0 bg-gradient-to-br ${benefit.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
+                    
+                    <div className="relative">
+                      <motion.div
+                        initial={{ scale: 1 }}
+                        whileHover={{ scale: 1.1 }}
+                        transition={{ duration: 0.3 }}
                       >
-                        <p className="text-xs font-medium text-muted-foreground mb-1">{stat.label}</p>
-                        <p className="text-lg md:text-2xl font-bold text-foreground">{stat.value}</p>
-                        <p className={`text-xs font-medium ${stat.color} mt-1`}>{stat.trend}</p>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="h-40 md:h-56 bg-gradient-to-br from-primary/5 to-blue-500/5 rounded-xl flex items-end p-4 border border-border/20">
-                    <div className="flex items-end gap-2 w-full h-full">
-                      {[40, 65, 45, 80, 55, 90, 70, 85, 60, 95, 75, 88].map((height, i) => (
-                        <div
-                          key={i}
-                          className="flex-1 bg-gradient-to-t from-primary to-blue-500 rounded-t-lg hover:from-primary/80 hover:to-blue-500/80 transition-all duration-300 cursor-pointer"
-                          style={{
-                            height: `${height}%`,
-                            animation: `grow 1s ease-out ${i * 0.1}s both`,
-                          }}
-                        />
-                      ))}
+                        <benefit.icon className="w-10 h-10 text-primary mb-4" />
+                      </motion.div>
+                      <h3 className="text-lg font-bold mb-3">{benefit.title}</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{benefit.desc}</p>
                     </div>
-                  </div>
-                </div>
-              </div>
+
+                    {/* Bottom gradient line */}
+                    <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${benefit.color} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`} />
+                  </motion.div>
+                </ScaleIn>
+              ))}
             </div>
           </div>
-        </ScaleIn> */}
-      </div>
+        </FadeIn>
 
-      <style jsx>{`
-        @keyframes grow {
-          from {
-            height: 0%;
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-      `}</style>
+        {/* Partnership Model */}
+       
+      </div>
     </section>
   )
 }

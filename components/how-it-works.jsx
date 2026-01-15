@@ -1,29 +1,27 @@
 "use client"
 
-import { UserPlus, Settings, Rocket, ArrowRight } from "lucide-react"
+import { Users, TrendingUp, ArrowRight } from "lucide-react"
 import { FadeIn } from "./motion-wrapper"
+import { Button } from "@/components/ui/button"
 
-const steps = [
+const partnerships = [
   {
-    icon: UserPlus,
+    icon: Users,
     step: "01",
-    title: "Create Account",
-    description: "Sign up in minutes with your business details. No lengthy or long paperwork required.",
-    color: "from-blue-500 to-cyan-500",
-  },
-  {
-    icon: Settings,
-    step: "02",
-    title: "Integrate",
-    description: "Use our APIs, plugins, or no-code solutions to connect SeqPay to your platform.",
-    color: "from-purple-500 to-pink-500",
-  },
-  {
-    icon: Rocket,
-    step: "03",
-    title: "Start Accepting",
-    description: "Go live and start accepting payments from customers across multiple channels.",
+    title: "Become a Retailer",
+    description: "Start your own digital service center with minimal investment. Provide banking services to your local customers and earn a commission on every transaction.",
     color: "from-green-500 to-emerald-500",
+    buttonText: "Get Started",
+    buttonVariant: "default"
+  },
+  {
+    icon: TrendingUp,
+    step: "02",
+    title: "Become a Distributor",
+    description: "Build and manage your own network of retailers. Earn passive income through every transaction made within your network.",
+    color: "from-blue-500 to-cyan-500",
+    buttonText: "Learn More",
+    buttonVariant: "outline"
   },
 ]
 
@@ -37,29 +35,22 @@ export default function HowItWorks() {
         <FadeIn>
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-              How It Works
+              Partnership Model
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-              Get started in <span className="text-gradient">three simple steps</span>
+              Join Our <span className="text-gradient">Growing Network</span>
             </h2>
             <p className="text-lg text-muted-foreground">
-              Start accepting payments in minutes, not days. Our streamlined process gets you up and running fast.
+              Choose your path to success. Whether you want to serve customers directly or build a network, we have the perfect opportunity for you.
             </p>
           </div>
         </FadeIn>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-          {steps.map((item, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-5xl mx-auto">
+          {partnerships.map((item, index) => (
             <FadeIn key={item.title} delay={index * 0.15}>
               <div className="relative group">
-                {/* Arrow icon between steps */}
-                {index < steps.length - 1 && (
-                  <div className="hidden md:flex absolute top-1/2 -translate-y-1/2 -right-12 w-12 h-12 items-center justify-center z-10">
-                    <ArrowRight className="w-6 h-6 text-primary" />
-                  </div>
-                )}
-
-                <div className="relative bg-background rounded-3xl p-8 border border-border/50 shadow-lg hover:shadow-2xl hover:border-primary/30 hover:-translate-y-2 transition-all duration-500 text-center overflow-hidden">
+                <div className="relative bg-background rounded-3xl p-8 border border-border/50 shadow-lg hover:shadow-2xl hover:border-primary/30 hover:-translate-y-2 transition-all duration-500 overflow-hidden h-full flex flex-col">
                   {/* Background glow */}
                   <div
                     className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
@@ -76,7 +67,7 @@ export default function HowItWorks() {
 
                   {/* Icon */}
                   <div
-                    className={`relative w-20 h-20 rounded-2xl bg-gradient-to-br ${item.color} p-0.5 mx-auto mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}
+                    className={`relative w-20 h-20 rounded-2xl bg-gradient-to-br ${item.color} p-0.5 mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}
                   >
                     <div className="w-full h-full rounded-2xl bg-background flex items-center justify-center">
                       <item.icon className="w-9 h-9 text-primary" />
@@ -86,12 +77,20 @@ export default function HowItWorks() {
                   <span
                     className={`inline-block text-sm font-bold bg-gradient-to-r ${item.color} bg-clip-text text-transparent mb-3`}
                   >
-                    STEP {item.step}
+                    OPTION {item.step}
                   </span>
-                  <h3 className="text-xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors">
+                  <h3 className="text-2xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors">
                     {item.title}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">{item.description}</p>
+                  <p className="text-muted-foreground leading-relaxed mb-6 flex-grow">{item.description}</p>
+                  
+                  <Button 
+                    className="w-full" 
+                    variant={item.buttonVariant}
+                    size="lg"
+                  >
+                    {item.buttonText} <ArrowRight className="w-4 h-4 ml-2" />
+                  </Button>
                 </div>
               </div>
             </FadeIn>
