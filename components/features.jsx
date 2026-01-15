@@ -84,13 +84,13 @@ export default function Features() {
                   <div
                     className={`w-14 h-14 rounded-2xl ${feature.bgColor} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
                   >
-                    <feature.icon
+                    {/* <feature.icon
                       className={`w-7 h-7 bg-gradient-to-br ${feature.color} bg-clip-text`}
                       style={{
                         color: "transparent",
                         backgroundImage: `linear-gradient(to bottom right, var(--tw-gradient-stops))`,
                       }}
-                    />
+                    /> */}
                     <feature.icon className={`w-7 h-7 text-primary`} />
                   </div>
                   <CardTitle className="text-xl font-semibold group-hover:text-primary transition-colors duration-300">

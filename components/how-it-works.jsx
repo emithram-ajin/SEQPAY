@@ -8,7 +8,7 @@ const steps = [
     icon: UserPlus,
     step: "01",
     title: "Create Account",
-    description: "Sign up in minutes with your business details. No lengthy paperwork required.",
+    description: "Sign up in minutes with your business details. No lengthy or long paperwork required.",
     color: "from-blue-500 to-cyan-500",
   },
   {
@@ -52,15 +52,10 @@ export default function HowItWorks() {
           {steps.map((item, index) => (
             <FadeIn key={item.title} delay={index * 0.15}>
               <div className="relative group">
-                {/* Connector line for desktop */}
-                {index < steps.length - 1 && (
-                  <div className="hidden md:block absolute top-16 left-[60%] w-[80%] h-0.5 bg-gradient-to-r from-border via-primary/30 to-border" />
-                )}
-
                 {/* Arrow icon between steps */}
                 {index < steps.length - 1 && (
-                  <div className="hidden md:flex absolute top-14 left-[calc(100%-1rem)] w-8 h-8 items-center justify-center z-10">
-                    <ArrowRight className="w-5 h-5 text-primary/50" />
+                  <div className="hidden md:flex absolute top-1/2 -translate-y-1/2 -right-12 w-12 h-12 items-center justify-center z-10">
+                    <ArrowRight className="w-6 h-6 text-primary" />
                   </div>
                 )}
 
