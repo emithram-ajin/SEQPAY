@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Menu, X, Sparkles, ChevronDown } from "lucide-react"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 
 const navLinks = [
   { name: "Home", href: "home" },
@@ -33,6 +34,7 @@ const navLinks = [
 ]
 
 export default function Navbar() {
+  const router = useRouter()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [openSubmenu, setOpenSubmenu] = useState(null)
@@ -45,12 +47,16 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const scrollToSection = (e, sectionId) => {
+  const handleNavigation = (e, href, isPage = false) => {
     e.preventDefault()
-    window.history.pushState(null, '', `${sectionId}`)
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" })
+    if (isPage) {
+      router.push(`/${href}`)
+    } else {
+      window.history.pushState(null, '', `${href}`)
+      const element = document.getElementById(href)
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" })
+      }
     }
   }
 
@@ -76,7 +82,7 @@ export default function Navbar() {
                 {link.submenu ? (
                   <>
                     <button
-                      onClick={(e) => scrollToSection(e, link.href)}
+                      onClick={(e) => handleNavigation(e, link.href)}
                       className="relative px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 flex items-center gap-1"
                     >
                       {link.name}
@@ -97,7 +103,7 @@ export default function Navbar() {
                                 <a
                                   key={item.name}
                                   href={`#${item.href}`}
-                                  onClick={(e) => scrollToSection(e, item.href)}
+                                  onClick={(e) => handleNavigation(e, item.href, item.href === 'aeps' || item.href === 'mobilerecharge')}
                                   className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-colors"
                                 >
                                   {item.name}
@@ -112,7 +118,7 @@ export default function Navbar() {
                 ) : (
                   <a
                     href={`#${link.href}`}
-                    onClick={(e) => scrollToSection(e, link.href)}
+                    onClick={(e) => handleNavigation(e, link.href)}
                     className="relative px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 group"
                   >
                     {link.name}
@@ -163,7 +169,7 @@ export default function Navbar() {
                   href={`#${link.href}`}
                   className="px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-all duration-200"
                   onClick={(e) => {
-                    scrollToSection(e, link.href)
+                    handleNavigation(e, link.href)
                     setMobileMenuOpen(false)
                   }}
                   style={{ animationDelay: `${index * 50}ms` }}
