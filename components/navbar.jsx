@@ -108,7 +108,7 @@ export default function Navbar() {
             className="flex items-center gap-2.5 group"
           >
             <Image
-              src="/logo.png"
+              src="/logonew.png"
               alt="Logo"
               width={250}
               height={20}

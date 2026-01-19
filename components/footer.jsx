@@ -55,7 +55,7 @@ export default function Footer() {
               <div className="flex items-center ">
                 <div className="w-32 h-32 rounded-xl overflow-hidden shadow-lg">
                   <img
-                    src="logo.png"
+                    src="logonew.png"
                     alt="SeqPay Logo"
                     className="w-full h-full object-contain"
                   />
@@ -64,8 +64,8 @@ export default function Footer() {
               </div>
 
               <p className="text-background/60 text-sm mb-8 max-w-xs leading-relaxed">
-                Fast, secure, and reliable payment solutions for businesses of all sizes. Join 10,000+ businesses
-                already using SeqPay.
+               SeqPay is a brand owned and operated by ESTA ENTERPRISES PVT LTD. © 2026 SeqPay.
+               All Rights Reserved. Safe | Secure | Seamless
               </p>
 
               <div className="flex gap-3">
