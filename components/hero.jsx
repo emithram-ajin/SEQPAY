@@ -64,18 +64,17 @@ export default function Hero() {
 
           <FadeIn delay={0.1}>
             <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-balance mb-6">
-              <span className="text-foreground">Fast, Secure</span>
+              <span className="text-foreground">Secure Your</span>
               <br />
-              <span className="text-gradient">Online Payments</span>
+              <span className="text-gradient">Financial</span>
               <br />
-              <span className="text-foreground">for Your Business</span>
+              <span className="text-foreground">Future Today</span>
             </h1>
           </FadeIn>
 
           <FadeIn delay={0.2}>
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 text-pretty leading-relaxed">
-              Accept payments seamlessly with SeqPay. Support for UPI, credit cards, debit cards, and netbanking with
-              industry-leading security and real-time analytics.
+              Build a profitable business with Seqpay.in in the fast-growing digital payments and utility services industry.
             </p>
           </FadeIn>
 
