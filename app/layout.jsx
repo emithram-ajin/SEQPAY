@@ -24,14 +24,20 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata = {
-  title: "SeqPay - Fast & Secure Payment Gateway",
+  title: "SeqPay",
   description:
     "Accept payments seamlessly with SeqPay. Support for UPI, credit cards, debit cards, and netbanking with industry-leading security.",
+  icons: {
+    icon: "/logonew.png",
+  },
 }
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} ${dmSans.variable} ${jetbrainsMono.variable}`}>
+      <head>
+        <link rel="icon" href="/logonew.png" />
+      </head>
       <body className="font-sans">
         <Navbar />
         {children}

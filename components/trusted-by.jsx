@@ -35,6 +35,12 @@ const services = [
     desc: "Instant recharges for all major telecom operators and DTH service providers with high success rates and attractive margins.",
     color: "from-orange-500 to-red-500"
   },
+  { 
+    icon: CreditCard, 
+    title: "Domestic Money Transfer (DMT)", 
+    desc: "Send money to any bank account across India instantly. Our secure channel ensures that funds reach the recipient in seconds, even on holidays.",
+    color: "from-green-600 to-emerald-600"
+  }
 ]
 
 export default function TrustedBy() {

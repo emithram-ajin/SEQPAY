@@ -9,7 +9,7 @@ const partnerships = [
     icon: Users,
     step: "01",
     title: "Become a Retailer",
-    description: "Start your own digital service center with minimal investment. Provide banking services to your local customers and earn a commission on every transaction.",
+    description: "Start your own digital service center with minimal investment. Provide banking services to your local customers and earn a commission.",
     color: "from-green-500 to-emerald-500",
     buttonText: "Get Started",
     buttonVariant: "default"

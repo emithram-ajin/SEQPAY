@@ -4,8 +4,10 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, Shield, Zap, Smartphone, CreditCard, Banknote, Receipt, Users, TrendingUp, Clock, Headphones } from "lucide-react"
 import { FadeIn, ScaleIn, SlideIn } from "./motion-wrapper"
 import { motion } from "framer-motion"
+import { useRouter } from "next/navigation"
 
 export default function Hero() {
+  const router = useRouter()
   const services = [
     { 
       icon: Smartphone, 
@@ -38,7 +40,7 @@ export default function Hero() {
     { 
       icon: Shield, 
       title: "Trust & Reliability", 
-      desc: "As a unit of ESTA ENTERPRISES PVT LTD, we prioritize transparency and security in every transaction.",
+      desc: "As a unit of ESTA ENTERPRISES PVT LTD, we prioritize transparency and security .",
       color: "from-green-600 to-emerald-600"
     },
     { 
@@ -168,12 +170,25 @@ export default function Hero() {
               animate="visible"
             >
               <motion.div variants={itemVariants}>
-                <Button size="lg" className="gap-2" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button 
+                  size="lg" 
+                  className="gap-2" 
+                  whileHover={{ scale: 1.05 }} 
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => router.push('/retailer')}
+                >
                   Become a Retailer <ArrowRight className="w-4 h-4" />
                 </Button>
               </motion.div>
               <motion.div variants={itemVariants}>
-                <Button size="lg" variant="outline" className="gap-2" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="gap-2" 
+                  whileHover={{ scale: 1.05 }} 
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => router.push('/distributor')}
+                >
                   Become a Distributor
                 </Button>
               </motion.div>
@@ -216,9 +231,41 @@ export default function Hero() {
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
               Why Partner with <span className="text-gradient">SeqPay?</span>
             </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {benefits.map((benefit, idx) => (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+              {benefits.slice(0, 3).map((benefit, idx) => (
                 <ScaleIn key={idx} delay={0.1 * idx}>
+                  <motion.div 
+                    className="group relative p-6 rounded-2xl bg-gradient-to-br from-primary/5 to-blue-500/5 border border-primary/20 hover:shadow-lg transition-all overflow-hidden"
+                    whileHover={{ 
+                      scale: 1.05,
+                      borderColor: "rgba(var(--primary), 0.5)"
+                    }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {/* Gradient overlay on hover */}
+                    <div className={`absolute inset-0 bg-gradient-to-br ${benefit.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
+                    
+                    <div className="relative">
+                      <motion.div
+                        initial={{ scale: 1 }}
+                        whileHover={{ scale: 1.1 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <benefit.icon className="w-10 h-10 text-primary mb-4" />
+                      </motion.div>
+                      <h3 className="text-lg font-bold mb-3">{benefit.title}</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{benefit.desc}</p>
+                    </div>
+
+                    {/* Bottom gradient line */}
+                    <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${benefit.color} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`} />
+                  </motion.div>
+                </ScaleIn>
+              ))}
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {benefits.slice(3).map((benefit, idx) => (
+                <ScaleIn key={idx + 3} delay={0.1 * (idx + 3)}>
                   <motion.div 
                     className="group relative p-6 rounded-2xl bg-gradient-to-br from-primary/5 to-blue-500/5 border border-primary/20 hover:shadow-lg transition-all overflow-hidden"
                     whileHover={{ 
