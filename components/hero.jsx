@@ -5,6 +5,7 @@ import { ArrowRight, Shield, Zap, Smartphone, CreditCard, Banknote, Receipt, Use
 import { FadeIn, ScaleIn, SlideIn } from "./motion-wrapper"
 import { motion } from "framer-motion"
 import { useRouter } from "next/navigation"
+import Image from "next/image"
 
 export default function Hero() {
   const router = useRouter()
@@ -138,79 +139,98 @@ export default function Hero() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Hero Header */}
-        <div className="text-center max-w-4xl mx-auto mb-20">
-          <FadeIn delay={0}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary/10 to-blue-500/10 border border-primary/20 text-primary text-sm font-medium mb-8">
-              <Zap className="w-4 h-4 animate-pulse" />
-              <span>A unit of ESTA ENTERPRISES PVT LTD</span>
-            </div>
-          </FadeIn>
+        <div className="grid lg:grid-cols-2 gap-12 items-center justify-center min-h-[40vh] mb-20">
+          {/* Left Content */}
+          <div className="text-left flex flex-col justify-center">
+            <FadeIn delay={0}>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary/10 to-blue-500/10 border border-primary/20 text-primary text-sm font-medium mb-8">
+                <Zap className="w-4 h-4 animate-pulse" />
+                <span>A unit of ESTA ENTERPRISES PVT LTD</span>
+              </div>
+            </FadeIn>
 
-          <FadeIn delay={0.1}>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-balance mb-6">
-              <span className="text-foreground">Secure Your</span>
-              <br />
-              <span className="text-gradient">Financial</span>
-              <br />
-              <span className="text-foreground">Future Today</span>
-            </h1>
-          </FadeIn>
+            <FadeIn delay={0.1}>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                <span className="text-foreground">Secure Your</span>
+                <br />
+                <span className="text-gradient">Financial</span>
+                <br />
+                <span className="text-foreground">Future Today</span>
+              </h1>
+            </FadeIn>
 
-          <FadeIn delay={0.2}>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 text-pretty leading-relaxed">
-              Build a profitable business with Seqpay.in in the fast-growing digital payments and utility services industry.
-            </p>
-          </FadeIn>
+            <FadeIn delay={0.2}>
+              <p className="text-lg md:text-xl text-muted-foreground mb-10 leading-relaxed">
+                Build a profitable business with Seqpay.in in the fast-growing digital payments and utility services industry.
+              </p>
+            </FadeIn>
 
-          <FadeIn delay={0.3}>
-            <motion.div 
-              className="flex flex-wrap items-center justify-center gap-4"
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              <motion.div variants={itemVariants}>
-                <Button 
-                  size="lg" 
-                  className="gap-2" 
-                  whileHover={{ scale: 1.05 }} 
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => router.push('/retailer')}
-                >
-                  Become a Retailer <ArrowRight className="w-4 h-4" />
-                </Button>
+            <FadeIn delay={0.4}>
+              <div className="flex flex-wrap items-center gap-6">
+                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20">
+                  <Shield className="w-4 h-4 text-green-600" />
+                  <span className="font-medium text-green-700">Safe</span>
+                </div>
+                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20">
+                  <Shield className="w-4 h-4 text-blue-600" />
+                  <span className="font-medium text-blue-700">Secure</span>
+                </div>
+                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20">
+                  <Shield className="w-4 h-4 text-purple-600" />
+                  <span className="font-medium text-purple-700">Seamless</span>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+
+          {/* Right Image */}
+          <div className="relative flex flex-col justify-center">
+            <FadeIn delay={0.3}>
+              <div className="relative">
+                <Image
+                  src="/heroimagee.jpeg"
+                  alt="SeqPay Hero"
+                  width={500}
+                  height={50}
+                  className="rounded-2xl shadow-2xl w-full h-auto"
+                />
+              </div>
+            </FadeIn>
+
+            {/* Buttons under image */}
+            <FadeIn delay={0.5}>
+              <motion.div 
+                className="flex flex-wrap gap-4 mt-8 justify-center"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                <motion.div variants={itemVariants}>
+                  <Button 
+                    size="lg" 
+                    className="gap-2" 
+                    whileHover={{ scale: 1.05 }} 
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => router.push('/retailer')}
+                  >
+                    Become a Retailer <ArrowRight className="w-4 h-4" />
+                  </Button>
+                </motion.div>
+                <motion.div variants={itemVariants}>
+                  <Button 
+                    size="lg" 
+                    variant="outline" 
+                    className="gap-2" 
+                    whileHover={{ scale: 1.05 }} 
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => router.push('/distributor')}
+                  >
+                    Become a Distributor
+                  </Button>
+                </motion.div>
               </motion.div>
-              <motion.div variants={itemVariants}>
-                <Button 
-                  size="lg" 
-                  variant="outline" 
-                  className="gap-2" 
-                  whileHover={{ scale: 1.05 }} 
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => router.push('/distributor')}
-                >
-                  Become a Distributor
-                </Button>
-              </motion.div>
-            </motion.div>
-          </FadeIn>
-
-          <FadeIn delay={0.4}>
-            <div className="flex flex-wrap items-center justify-center gap-6 mt-10">
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20">
-                <Shield className="w-4 h-4 text-green-600" />
-                <span className="font-medium text-green-700">Safe</span>
-              </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20">
-                <Shield className="w-4 h-4 text-blue-600" />
-                <span className="font-medium text-blue-700">Secure</span>
-              </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20">
-                <Shield className="w-4 h-4 text-purple-600" />
-                <span className="font-medium text-purple-700">Seamless</span>
-              </div>
-            </div>
-          </FadeIn>
+            </FadeIn>
+          </div>
         </div>
 
         {/* About Section */}
