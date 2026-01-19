@@ -42,6 +42,8 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [openSubmenu, setOpenSubmenu] = useState(null)
   const [mobileSubmenuOpen, setMobileSubmenuOpen] = useState({})
+  const [applyMenuOpen, setApplyMenuOpen] = useState(false)
+
 
   // Scroll effect
   useEffect(() => {
@@ -128,12 +130,12 @@ export default function Navbar() {
                 {link.submenu ? (
                   <>
                     <button
-                      className="relative px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 flex items-center gap-1"
+                      className="relative px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 flex items-center gap-1 cursor-pointer"
                       onClick={e => e.preventDefault()}
                     >
                       {link.name}
                       <ChevronDown className="w-4 h-4" />
-                      <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-primary rounded-full group-hover:w-4/5 transition-all duration-300" />
+                      <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-primary rounded-full group-hover:w-4/5 transition-all duration-300 " />
                     </button>
                     {openSubmenu === link.name && (
                       <div
@@ -142,25 +144,25 @@ export default function Navbar() {
                         onMouseLeave={() => setOpenSubmenu(null)}
                       >
                         <div className="bg-background/95 backdrop-blur-xl border border-border/50 rounded-xl shadow-xl p-4 grid grid-cols-2 gap-4">
-                        {link.submenu.map(category => (
-                          <div key={category.title}>
-                            <h4 className="text-xs font-semibold text-primary mb-2">
-                              {category.title}
-                            </h4>
-                            <div className="space-y-1">
-                              {category.items.map(item => (
-                                <a
-                                  key={item.name}
-                                  href={item.href}
-                                  onClick={e => handleNavigation(e, item)}
-                                  className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-colors"
-                                >
-                                  {item.name}
-                                </a>
-                              ))}
+                          {link.submenu.map(category => (
+                            <div key={category.title}>
+                              <h4 className="text-xs font-semibold text-primary mb-2">
+                                {category.title}
+                              </h4>
+                              <div className="space-y-1">
+                                {category.items.map(item => (
+                                  <a
+                                    key={item.name}
+                                    href={item.href}
+                                    onClick={e => handleNavigation(e, item)}
+                                    className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-colors"
+                                  >
+                                    {item.name}
+                                  </a>
+                                ))}
+                              </div>
                             </div>
-                          </div>
-                        ))}
+                          ))}
                         </div>
                       </div>
                     )}
@@ -184,19 +186,52 @@ export default function Navbar() {
             <Button
               variant="ghost"
               size="sm"
-              className="font-medium hover:bg-primary/5 hover:text-primary transition-colors duration-200"
+              className="font-medium hover:bg-primary/5 hover:text-primary transition-colors duration-200 cursor-pointer"
               onClick={() =>
                 window.open("https://partners.seqpay.in/login", "_blank")
               }
             >
               Login In
             </Button>
-            <Button
-              size="sm"
-              className="font-medium bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90 shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all duration-300 btn-shine"
+            <div
+              className="relative"
+              onMouseEnter={() => setApplyMenuOpen(true)}
+              onMouseLeave={() => setApplyMenuOpen(false)}
             >
-              Apply/Enquiry
-            </Button>
+              <Button
+                size="sm"
+                className="font-medium bg-gradient-to-r from-primary to-blue-600
+               hover:from-primary/90 hover:to-blue-600/90
+               shadow-lg shadow-primary/25 hover:shadow-primary/40
+               transition-all duration-300 btn-shine flex items-center gap-1 cursor-pointer"
+              >
+                Apply / Enquiry
+                <ChevronDown className="w-4 h-4" />
+              </Button>
+
+              {applyMenuOpen && (
+                <div className="absolute right-0 mt-0 w-44 rounded-xl
+                    bg-background/95 backdrop-blur-xl
+                    border border-border/50 shadow-xl z-50">
+                  <a
+                    href="/retailer"
+                    onClick={e => handleNavigation(e, { href: "/retailer", type: "page" })}
+                    className="block px-4 py-2 text-sm text-muted-foreground
+                   hover:text-foreground hover:bg-muted/50 rounded-t-xl"
+                  >
+                    Retailer
+                  </a>
+                  <a
+                    href="/distributor"
+                    onClick={e => handleNavigation(e, { href: "/distributor", type: "page" })}
+                    className="block px-4 py-2 text-sm text-muted-foreground
+                   hover:text-foreground hover:bg-muted/50 rounded-b-xl"
+                  >
+                    Distributor
+                  </a>
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Mobile Menu Button */}

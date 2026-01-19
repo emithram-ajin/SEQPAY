@@ -3,6 +3,8 @@
 import { Users, TrendingUp, ArrowRight } from "lucide-react"
 import { FadeIn } from "./motion-wrapper"
 import { Button } from "@/components/ui/button"
+import { useRouter } from "next/navigation"
+
 
 const partnerships = [
   {
@@ -12,6 +14,7 @@ const partnerships = [
     description: "Start your own digital service center with minimal investment. Provide banking services to your local customers and earn a commission on every transaction.",
     color: "from-green-500 to-emerald-500",
     buttonText: "Get Started",
+    href: "/retailer",
     buttonVariant: "default"
   },
   {
@@ -21,11 +24,14 @@ const partnerships = [
     description: "Build and manage your own network of retailers. Earn passive income through every transaction made within your network.",
     color: "from-blue-500 to-cyan-500",
     buttonText: "Learn More",
+    href: "/distributor",
     buttonVariant: "outline"
   },
 ]
 
 export default function HowItWorks() {
+  const router = useRouter()
+
   return (
     <section id="how-it-works" className="py-20 md:py-32 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-muted/50 via-muted/30 to-background" />
@@ -83,10 +89,13 @@ export default function HowItWorks() {
                     {item.title}
                   </h3>
                   <p className="text-muted-foreground leading-relaxed mb-6 flex-grow">{item.description}</p>
-                  
-                  <Button 
-                    className="w-full" 
+
+                  <Button
+                    className="w-full cursor-pointer flex items-center justify-center"
                     variant={item.buttonVariant}
+                    onClick={() => {
+                      console.log("Navigating to:", item.href)
+                    }}
                     size="lg"
                   >
                     {item.buttonText} <ArrowRight className="w-4 h-4 ml-2" />
