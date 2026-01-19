@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { Menu, X, Sparkles, ChevronDown } from "lucide-react"
-import Image from "next/image"
-import { useRouter } from "next/navigation"
-import { usePathname } from "next/navigation"
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Menu, X, Sparkles, ChevronDown } from "lucide-react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
   { name: "Home", href: "/", type: "scroll" },
@@ -32,11 +32,11 @@ const navLinks = [
     ],
   },
   { name: "Contact", href: "/contact", type: "page" },
-]
+];
 
 export default function Navbar() {
-  const router = useRouter()
-  const pathname = usePathname()
+  const router = useRouter();
+  const pathname = usePathname();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
@@ -47,62 +47,62 @@ export default function Navbar() {
 
   // Scroll effect
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Handle navigation
   const handleNavigation = (e, link) => {
-    e.preventDefault()
+    e.preventDefault();
 
     // If link is string, find in navLinks or submenus
     if (typeof link === "string") {
       const found = navLinks
-        .flatMap(l => (l.submenu ? l.submenu.flatMap(c => c.items) : [l]))
-        .find(l => l.href === link)
+        .flatMap((l) => (l.submenu ? l.submenu.flatMap((c) => c.items) : [l]))
+        .find((l) => l.href === link);
 
-      link = found || { href: "/", type: "scroll" }
+      link = found || { href: "/", type: "scroll" };
     }
 
     // PAGE navigation
     if (link.type === "page") {
-      router.push(link.href)
-      return
+      router.push(link.href);
+      return;
     }
 
     // HOME scroll (NO #)
     if (pathname !== "/") {
-      router.push("/")
-      return
+      router.push("/");
+      return;
     }
 
     // Already on home → smooth scroll to top
     window.scrollTo({
       top: 0,
       behavior: "smooth",
-    })
-  }
-
+    });
+  };
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-        ? "bg-background/95 backdrop-blur-xl shadow-sm border-b border-border/50"
-        : "bg-transparent"
-        }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-background/95 backdrop-blur-xl shadow-sm border-b border-border/50"
+          : "bg-transparent"
+      }`}
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <a
             href="/"
-            onClick={e => {
-              e.preventDefault()
+            onClick={(e) => {
+              e.preventDefault();
               if (pathname === "/") {
-                window.scrollTo({ top: 0, behavior: "smooth" })
+                window.scrollTo({ top: 0, behavior: "smooth" });
               } else {
-                router.push("/")
+                router.push("/");
               }
             }}
             className="flex items-center gap-2.5 group"
@@ -118,13 +118,11 @@ export default function Navbar() {
 
           {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-1">
-            {navLinks.map(link => (
+            {navLinks.map((link) => (
               <div
                 key={link.name}
                 className="relative group"
-                onMouseEnter={() =>
-                  link.submenu && setOpenSubmenu(link.name)
-                }
+                onMouseEnter={() => link.submenu && setOpenSubmenu(link.name)}
                 onMouseLeave={() => setOpenSubmenu(null)}
               >
                 {link.submenu ? (
@@ -170,7 +168,7 @@ export default function Navbar() {
                 ) : (
                   <a
                     href={link.href}
-                    onClick={e => handleNavigation(e, link)}
+                    onClick={(e) => handleNavigation(e, link)}
                     className="relative px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 group"
                   >
                     {link.name}
@@ -240,14 +238,19 @@ export default function Navbar() {
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
           </button>
         </div>
 
         {/* Mobile Menu */}
         <div
-          className={`md:hidden overflow-hidden transition-all duration-300 ease-out ${mobileMenuOpen ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
-            }`}
+          className={`md:hidden overflow-hidden transition-all duration-300 ease-out ${
+            mobileMenuOpen ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
+          }`}
         >
           <div className="py-4 border-t border-border/50">
             <div className="flex flex-col gap-1">
@@ -255,16 +258,16 @@ export default function Navbar() {
                 <div key={link.name}>
                   <a
                     href={link.href}
-                    onClick={e => {
+                    onClick={(e) => {
                       if (link.type !== "submenu") {
-                        handleNavigation(e, link)
-                        setMobileMenuOpen(false)
+                        handleNavigation(e, link);
+                        setMobileMenuOpen(false);
                       } else {
-                        e.preventDefault()
-                        setMobileSubmenuOpen(prev => ({
+                        e.preventDefault();
+                        setMobileSubmenuOpen((prev) => ({
                           ...prev,
                           [link.name]: !prev[link.name],
-                        }))
+                        }));
                       }
                     }}
                     className="px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-all duration-200 flex justify-between items-center"
@@ -276,18 +279,18 @@ export default function Navbar() {
                   {/* Mobile submenu */}
                   {link.submenu && mobileSubmenuOpen[link.name] && (
                     <div className="pl-6 mt-1 space-y-1">
-                      {link.submenu.map(category => (
+                      {link.submenu.map((category) => (
                         <div key={category.title}>
                           <h4 className="text-xs font-semibold text-primary mb-1">
                             {category.title}
                           </h4>
-                          {category.items.map(item => (
+                          {category.items.map((item) => (
                             <a
                               key={item.name}
                               href={item.href}
-                              onClick={e => {
-                                handleNavigation(e, item)
-                                setMobileMenuOpen(false)
+                              onClick={(e) => {
+                                handleNavigation(e, item);
+                                setMobileMenuOpen(false);
                               }}
                               className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-colors"
                             >
@@ -306,7 +309,10 @@ export default function Navbar() {
                 <Button variant="ghost" size="sm" className="justify-start">
                   Sign In
                 </Button>
-                <Button size="sm" className="bg-gradient-to-r from-primary to-blue-600">
+                <Button
+                  size="sm"
+                  className="bg-gradient-to-r from-primary to-blue-600"
+                >
                   <Sparkles className="w-4 h-4 mr-1.5" />
                   Get Started
                 </Button>
@@ -316,5 +322,5 @@ export default function Navbar() {
         </div>
       </nav>
     </header>
-  )
+  );
 }
