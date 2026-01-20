@@ -141,7 +141,7 @@ export default function Hero() {
         {/* Hero Header */}
         <div className="grid lg:grid-cols-2 gap-12 items-center justify-center min-h-[40vh] mb-20">
           {/* Left Content */}
-          <div className="text-left flex flex-col justify-center">
+          <div className="text-left flex flex-col justify-center mb-40 ">
             <FadeIn delay={0}>
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary/10 to-blue-500/10 border border-primary/20 text-primary text-sm font-medium mb-8">
                 <Zap className="w-4 h-4 animate-pulse" />
@@ -186,13 +186,13 @@ export default function Hero() {
           {/* Right Image */}
           <div className="relative flex flex-col justify-center">
             <FadeIn delay={0.3}>
-              <div className="relative">
+              <div className="relative ml-10">
                 <Image
                   src="/heroimagee.jpeg"
                   alt="SeqPay Hero"
                   width={500}
                   height={50}
-                  className="rounded-2xl shadow-2xl w-full h-auto"
+                  className="rounded-2xl shadow-2xl  h-auto"
                 />
               </div>
             </FadeIn>
@@ -235,7 +235,7 @@ export default function Hero() {
 
         {/* About Section */}
         <FadeIn delay={0.5}>
-          <div className="max-w-4xl mx-auto text-center mb-20">
+          <div className="max-w-6xl mx-auto text-center mb-20">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">About SeqPay</h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
               SeqPay is a leading Fintech platform operated under ESTA ENTERPRISES PVT LTD. We are committed to financial inclusion by bringing essential banking and payment services to every doorstep. Our robust technology enables local retailers to serve as a digital hub for their community, providing everything from cash withdrawals to utility payments.
