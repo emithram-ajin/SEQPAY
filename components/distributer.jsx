@@ -16,6 +16,8 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { toast } from "./ui/use-toast"
+
 
 export default function DistributerPage() {
   const [formData, setFormData] = useState({
@@ -83,10 +85,95 @@ export default function DistributerPage() {
     setIsStateOpen(false);
   };
 
+  const isValidPhone = (phone) => {
+    const cleaned = phone.replace(/\D/g, "")
+    return /^[6-9]\d{9}$/.test(cleaned)
+  }
+
+  const isValidEmail = (email) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    if (!isValidPhone(formData.mobile)) {
+      alert("Please enter a valid 10-digit Indian mobile number")
+      return
+    }
+
+    if (!isValidEmail(formData.email)) {
+      alert("Please enter a valid email address")
+      return
+    }
+
+    const formDataToSend = new FormData()
+    formDataToSend.append("access_key", "396e2e5a-eb6a-411b-a09b-764f8731cb82")
+    formDataToSend.append("first_name", formData.firstName)
+    formDataToSend.append("last_name", formData.lastName)
+    formDataToSend.append("phone", formData.mobile)
+    formDataToSend.append("email", formData.email)
+    formDataToSend.append(
+      "message",
+      `
+      Distributor Registration Request
+
+      Name: ${formData.firstName} ${formData.lastName}
+      Mobile: ${formData.mobile}
+      Email: ${formData.email}
+      State: ${formData.state}
+      City: ${formData.city}
+      Already in Business: ${formData.inBusiness}
+    `
+    )
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formDataToSend,
+      })
+
+      const data = await response.json()
+
+      if (data.success) {
+        if (data.success) {
+          toast({
+            title: "Message sent 🎉",
+            description: "We’ll get back to you as soon as possible.",
+          })
+        }
+        setFormData({
+          firstName: "",
+          lastName: "",
+          mobile: "",
+          email: "",
+          state: "",
+          city: "",
+          inBusiness: "no",
+        })
+        setSearchTerm("")
+      } else {
+        toast({
+          title: "Submission failed",
+          description: "Please try again later.",
+          variant: "destructive",
+        })
+      }
+    } catch (error) {
+      toast({
+        title: "Submission failed",
+        description: "Please try again later.",
+        variant: "destructive",
+      })
+    }
+  }
+
+
+
   return (
     <div className="h-screen bg-white flex flex-col pt-16 md:pt-20">
       <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
-        <div className="hidden md:flex w-1/2 bg-[#020617] relative flex-col items-center justify-center p-8 overflow-hidden">
+        <div className="hidden md:flex w-1/2 bg-[#95c3f4] relative flex-col items-center justify-center p-8 overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-full">
             <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/20 rounded-full blur-[120px] animate-pulse" />
             <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-indigo-600/20 rounded-full blur-[120px] animate-pulse" />
@@ -100,19 +187,19 @@ export default function DistributerPage() {
           >
             <div className="mb-8">
               <h1 className="text-3xl lg:text-4xl font-extrabold text-white leading-tight">
-                Scale Your <span className="text-blue-500">Business</span> with
+                Scale Your <span className="text-blue-800">Business</span> with
                 SEQPay.
               </h1>
             </div>
 
             <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6 mb-8 shadow-2xl">
-              <Quote className="w-8 h-8 text-blue-500/50 mb-3" />
-              <p className="text-lg lg:text-xl text-slate-300 font-medium italic leading-relaxed">
+              <Quote className="w-8 h-8 text-blue-800/50 mb-3" />
+              <p className="text-lg lg:text-xl text-slate-700 font-medium italic leading-relaxed">
                 "Scaling success through secure and innovative digital
                 solutions."
               </p>
               <div className="mt-4 flex items-center gap-3">
-                <div className="w-10 h-1 bg-blue-500 rounded-full" />
+                <div className="w-10 h-1 bg-blue-800 rounded-full" />
                 <span className="text-white font-bold tracking-widest uppercase text-sm">
                   SEQPay
                 </span>
@@ -128,7 +215,7 @@ export default function DistributerPage() {
                   <p className="text-2xl font-bold text-white mb-1">
                     {stat.value}
                   </p>
-                  <p className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">
+                  <p className="text-[10px] text-slate-700 font-bold uppercase tracking-widest">
                     {stat.label}
                   </p>
                 </div>
@@ -145,26 +232,21 @@ export default function DistributerPage() {
         </div>
 
         {/* Right Panel - Registration Form (50%) */}
-        <div className="flex-1 bg-white flex flex-col items-center justify-center p-4 md:p-8 overflow-y-auto">
+
+        <div className="flex-1 flex flex-col items-center justify-center p-4 md:p-8 overflow-y-auto bg-[#95c3f4]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="w-full max-w-lg"
+            className="w-full max-w-lg shadow-2xl rounded-2xl border border-gray-100 p-6 md:p-8  bg-white"
           >
             <div className="mb-6 block">
-              <span className="inline-block px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-[10px] font-bold uppercase tracking-widest mb-2">
-                Distributor Hub
-              </span>
               <h2 className="text-2xl font-black text-slate-900 mb-1">
                 Create Partner Account
               </h2>
-              <p className="text-sm text-slate-500">
-                Fill in the details to start your journey with SEQPay.
-              </p>
             </div>
 
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* First Name */}
                 <div className="group space-y-1.5">
@@ -216,9 +298,11 @@ export default function DistributerPage() {
                       placeholder="10-digit number"
                       className="w-full pl-11 pr-4 py-2.5 rounded-xl bg-slate-50 border border-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500 focus:bg-white transition-all text-slate-900"
                       value={formData.mobile}
-                      onChange={(e) =>
-                        setFormData({ ...formData, mobile: e.target.value })
-                      }
+                      onChange={(e) => {
+                        const value = e.target.value.replace(/\D/g, "").slice(0, 10)
+                        setFormData({ ...formData, mobile: value })
+                      }}
+
                     />
                   </div>
                 </div>
@@ -235,9 +319,13 @@ export default function DistributerPage() {
                       placeholder="name@email.com"
                       className="w-full pl-11 pr-4 py-2.5 rounded-xl bg-slate-50 border border-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500 focus:bg-white transition-all text-slate-900"
                       value={formData.email}
-                      onChange={(e) =>
-                        setFormData({ ...formData, email: e.target.value })
-                      }
+                      onChange={(e) => {
+                        setFormData({
+                          ...formData,
+                          email: e.target.value.replace(/\s/g, "")
+                        })
+                      }}
+
                     />
                   </div>
                 </div>
@@ -267,9 +355,8 @@ export default function DistributerPage() {
                       onFocus={() => setIsStateOpen(true)}
                     />
                     <ChevronDown
-                      className={`absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 transition-transform ${
-                        isStateOpen ? "rotate-180" : ""
-                      }`}
+                      className={`absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 transition-transform ${isStateOpen ? "rotate-180" : ""
+                        }`}
                     />
                   </div>
                   <AnimatePresence>
@@ -333,11 +420,10 @@ export default function DistributerPage() {
                       onClick={() =>
                         setFormData({ ...formData, inBusiness: option })
                       }
-                      className={`flex-1 py-2.5 px-6 rounded-xl text-sm font-bold capitalize transition-all border ${
-                        formData.inBusiness === option
-                          ? "bg-[#020617] text-white border-[#020617] shadow-xl shadow-slate-900/20 scale-[1.02]"
-                          : "bg-white text-slate-400 border-slate-100 hover:border-slate-200 hover:text-slate-600"
-                      }`}
+                      className={`flex-1 py-2.5 px-6 rounded-xl text-sm font-bold capitalize transition-all border ${formData.inBusiness === option
+                        ? "bg-[#020617] text-white border-[#020617] shadow-xl shadow-slate-900/20 scale-[1.02]"
+                        : "bg-white text-slate-400 border-slate-100 hover:border-slate-200 hover:text-slate-600"
+                        }`}
                     >
                       {option}
                     </button>

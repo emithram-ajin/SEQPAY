@@ -5,25 +5,105 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
-import { Mail, Phone, MapPin, Send, ArrowRight } from "lucide-react"
+import { Mail, MapPin, Send } from "lucide-react"
 import { FadeIn, SlideIn } from "./motion-wrapper"
+import { toast } from "./ui/use-toast"
+
+
 
 export default function Contact() {
+
   const [formData, setFormData] = useState({
-    name: "",
+    fname: "",
+    lname: "",
+    number: "",
     email: "",
-    company: "",
     message: "",
   })
+
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [result, setResult] = useState("")
+
+  const isValidPhone = (phone) => {
+    const cleaned = phone.replace(/\D/g, "")
+    const indianMobileRegex = /^[6-9]\d{9}$/
+    return indianMobileRegex.test(cleaned)
+  }
+
+  const isValidEmail = (email) => {
+    const emailRegex =
+      /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
+    return emailRegex.test(email)
+  }
+
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    if (!isValidPhone(formData.number)) {
+      toast({
+        title: "Invalid phone number",
+        description: "Please enter a valid mobile number.",
+        variant: "destructive",
+      })
+      return
+    }
+    if (!isValidEmail(formData.email)) {
+      toast({
+        title: "Invalid email address",
+        description: "Please enter a valid email address.",
+      })
+      return
+    }
+
     setIsSubmitting(true)
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-    console.log("Form submitted:", formData)
-    setIsSubmitting(false)
+    setResult("")
+
+    const formDataToSend = new FormData()
+    formDataToSend.append("access_key", "396e2e5a-eb6a-411b-a09b-764f8731cb82")
+    formDataToSend.append("first_name", formData.fname)
+    formDataToSend.append("last_name", formData.lname)
+    formDataToSend.append("phone", formData.number)
+    formDataToSend.append("email", formData.email)
+    formDataToSend.append("message", formData.message)
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formDataToSend,
+      })
+
+      const data = await response.json()
+
+      if (data.success) {
+        if (data.success) {
+          toast({
+            title: "Message sent 🎉",
+            description: "We’ll get back to you as soon as possible.",
+          })
+          // setResult("Message sent successfully!")
+          setFormData({
+            fname: "",
+            lname: "",
+            number: "",
+            email: "",
+            message: "",
+          })
+        } else {
+          setResult("Failed to send message.")
+          toast({
+            title: "Submission failed",
+            description: "Please try again later.",
+            variant: "destructive",
+          })
+        }
+      }
+    } catch (error) {
+      setResult("Something went wrong!")
+      setIsSubmitting(false)
+    }
+    finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -54,86 +134,88 @@ export default function Contact() {
                 <form onSubmit={handleSubmit} className="space-y-6 mt-8">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <label htmlFor="name" className="text-sm font-medium text-foreground">
+                      <label className="text-sm font-medium text-foreground">
                         First Name
                       </label>
                       <Input
-                        id="fname"
                         placeholder="Your Firstname"
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, fname: e.target.value })}
+                        value={formData.fname}
+                        onChange={(e) =>
+                          setFormData({ ...formData, fname: e.target.value })
+                        }
                         required
                         className="h-12 border-border/50 focus:border-primary/50 transition-colors"
                       />
                     </div>
+
                     <div className="space-y-2">
-                      <label htmlFor="name" className="text-sm font-medium text-foreground">
+                      <label className="text-sm font-medium text-foreground">
                         Last Name
                       </label>
                       <Input
-                        id="lname"
                         placeholder="Your lastname"
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, lname: e.target.value })}
+                        value={formData.lname}
+                        onChange={(e) =>
+                          setFormData({ ...formData, lname: e.target.value })
+                        }
                         required
                         className="h-12 border-border/50 focus:border-primary/50 transition-colors"
                       />
                     </div>
-                      <div className="space-y-2">
-                      <label htmlFor="email" className="text-sm font-medium text-foreground">
+
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-foreground">
                         Mobile Number
                       </label>
                       <Input
-                        id="number"
                         type="tel"
                         placeholder="your mobile number"
                         value={formData.number}
-                        onChange={(e) => setFormData({ ...formData, number: e.target.value })}
+                        onChange={(e) => {
+                          const value = e.target.value.replace(/\D/g, "").slice(0, 10)
+                          setFormData({ ...formData, number: value })
+                        }}
+                        maxLength={10}
                         required
                         className="h-12 border-border/50 focus:border-primary/50 transition-colors"
                       />
+
                     </div>
+
                     <div className="space-y-2">
-                      <label htmlFor="email" className="text-sm font-medium text-foreground">
+                      <label className="text-sm font-medium text-foreground">
                         Email
                       </label>
                       <Input
-                        id="email"
                         type="email"
                         placeholder="your@email.com"
                         value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        onChange={(e) => {
+                          const value = e.target.value.replace(/\s/g, "")
+                          setFormData({ ...formData, email: value })
+                        }}
                         required
                         className="h-12 border-border/50 focus:border-primary/50 transition-colors"
                       />
                     </div>
                   </div>
-                  {/* <div className="space-y-2">
-                    <label htmlFor="company" className="text-sm font-medium text-foreground">
-                      Company
-                    </label>
-                    <Input
-                      id="company"
-                      placeholder="Your company name"
-                      value={formData.company}
-                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                      className="h-12 border-border/50 focus:border-primary/50 transition-colors"
-                    />
-                  </div> */}
+
                   <div className="space-y-2">
-                    <label htmlFor="message" className="text-sm font-medium text-foreground">
+                    <label className="text-sm font-medium text-foreground">
                       Message
                     </label>
                     <Textarea
-                      id="message"
                       placeholder="How can we help you?"
                       rows={5}
                       value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, message: e.target.value })
+                      }
                       required
                       className="border-border/50 focus:border-primary/50 transition-colors resize-none"
                     />
                   </div>
+
                   <Button
                     type="submit"
                     className="w-full h-12 font-semibold bg-gradient-to-r from-primary to-blue-600 hover:from-primary/90 hover:to-blue-600/90 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 btn-shine"
@@ -151,6 +233,12 @@ export default function Contact() {
                       </span>
                     )}
                   </Button>
+
+                  {result && (
+                    <p className="text-center text-sm text-muted-foreground">
+                      {result}
+                    </p>
+                  )}
                 </form>
               </CardContent>
             </Card>
@@ -159,28 +247,30 @@ export default function Contact() {
           <SlideIn from="right" delay={0.2}>
             <div className="space-y-8">
               <div>
-                <h3 className="text-2xl font-bold text-foreground mb-8">Contact Information</h3>
+                <h3 className="text-2xl font-bold text-foreground mb-8">
+                  Contact Information
+                </h3>
+
                 <div className="space-y-6">
                   {[
                     {
                       icon: Mail,
                       title: "Email",
-                      lines: ["estakerala@gmailcom"],
+                      lines: ["estakerala@gmail.com"],
                       color: "from-blue-500 to-cyan-500",
                     },
-                    // {
-                    //   icon: Phone,
-                    //   title: "Phone",
-                    //   lines: ["+91 9495-270-555", "(Mon-sat, 9AM-5PM IST)"],
-                    //   color: "from-green-500 to-emerald-500",
-                    // },
                     {
                       icon: MapPin,
                       title: "Office",
-                      lines: ["DD Vyapar Bhavan", "KP Vallon Rd", "Kadavanthra, Kochi 682020", "Kerala, India"],
+                      lines: [
+                        "DD Vyapar Bhavan",
+                        "KP Vallon Rd",
+                        "Kadavanthra, Kochi 682020",
+                        "Kerala, India",
+                      ],
                       color: "from-purple-500 to-pink-500",
                     },
-                  ].map((item, index) => (
+                  ].map((item) => (
                     <div
                       key={item.title}
                       className="group flex items-start gap-4 p-4 rounded-xl hover:bg-muted/50 transition-all duration-300 cursor-default"
@@ -192,8 +282,12 @@ export default function Contact() {
                           <item.icon className="w-5 h-5 text-primary" />
                         </div>
                       </div>
+
                       <div>
-                        <p className="font-semibold text-foreground mb-1">{item.title}</p>
+                        <p className="font-semibold text-foreground mb-1">
+                          {item.title}
+                        </p>
+
                         {item.lines.map((line, i) => (
                           <p key={i} className="text-muted-foreground text-sm">
                             {line}
@@ -204,22 +298,10 @@ export default function Contact() {
                   ))}
                 </div>
               </div>
-
-              {/* CTA Card */}
-              {/* <div className="p-6 rounded-2xl bg-gradient-to-br from-primary/10 to-blue-500/10 border border-primary/20">
-                <h4 className="font-semibold text-foreground mb-2">Need immediate help?</h4>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Our team is available 24/7 to assist you with any urgent matters.
-                </p>
-                <Button variant="outline" size="sm" className="group bg-transparent">
-                  Schedule a Call
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </div> */}
             </div>
           </SlideIn>
         </div>
-      </div>
-    </section>
+      </div >
+    </section >
   )
 }

@@ -11,7 +11,7 @@ export default function DMTPage() {
         <main className="bg-gray-50 text-gray-800">
             {/* HERO */}
             <section className="bg-[#E3EEF1]  mt-20 py-16">
-                <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
+                <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
 
                     {/* LEFT: TEXT */}
                     <div>

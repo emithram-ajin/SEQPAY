@@ -1,6 +1,6 @@
 "use client"
 
-import { Twitter, Linkedin, Github, Instagram, ArrowUp } from "lucide-react"
+import { Twitter, Linkedin, Github, Instagram, ArrowUp, Youtube, Facebook } from "lucide-react"
 import { FadeIn } from "./motion-wrapper"
 
 const footerLinks = {
@@ -31,9 +31,9 @@ const footerLinks = {
 }
 
 const socialLinks = [
+  { name: "Youtube", icon: Youtube, href: "#" },
+  { name: "Facebook", icon: Facebook, href: "#" },
   { name: "Twitter", icon: Twitter, href: "#" },
-  { name: "LinkedIn", icon: Linkedin, href: "#" },
-  { name: "GitHub", icon: Github, href: "#" },
   { name: "Instagram", icon: Instagram, href: "#" },
 ]
 
@@ -49,7 +49,7 @@ export default function Footer() {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
         <FadeIn>
-          <div className="grid grid-cols-2 md:grid-cols-6 gap-8 lg:gap-12 mb-16">
+          <div className="grid grid-cols-2 md:grid-cols-6 gap-8 lg:gap-12 ">
             {/* Brand */}
             <div className="col-span-2">
               <div className="flex items-center ">
@@ -64,8 +64,8 @@ export default function Footer() {
               </div>
 
               <p className="text-background/60 text-sm mb-8 max-w-xs leading-relaxed">
-               SeqPay is a brand owned and operated by ESTA ENTERPRISES PVT LTD. © 2026 SeqPay.
-               All Rights Reserved. Safe | Secure | Seamless
+                SeqPay is a brand owned and operated by ESTA ENTERPRISES PVT LTD. © 2026 SeqPay.
+                All Rights Reserved. Safe | Secure | Seamless
               </p>
 
               <div className="flex gap-3">

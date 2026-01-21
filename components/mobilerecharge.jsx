@@ -52,62 +52,7 @@ export default function MobileRechargePage() {
         </motion.div>
 
         {/* Right Section */}
-        <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-        >
-          <Card className="rounded-2xl shadow-xl p-6">
-            <CardContent className="p-6 space-y-4">
-              <h2 className="text-2xl font-bold text-blue-700">
-                Create a Free Seqpay Account
-              </h2>
-              <input
-                placeholder="Mobile Number"
-                className="w-full border rounded-lg p-2"
-              />
-              <input
-                placeholder="Email Address"
-                className="w-full border rounded-lg p-2"
-              />
-              <select className="w-full border rounded-lg p-2">
-                <option>Select your state</option>
-                <option>Andhra Pradesh</option>
-                <option>Arunachal Pradesh</option>
-                <option>Assam</option>
-                <option>Bihar</option>
-                <option>Chhattisgarh</option>
-                <option>Gujarat</option>
-                <option>Haryana</option>
-                <option>Himachal Pradesh</option>
-                <option>Jammu & Kashmir</option>
-                <option>Jharkhand</option>
-                <option>Karnataka</option>
-                <option>Kerala</option>
-                <option>Madhya Pradesh</option>
-                <option>Maharashtra</option>
-                <option>Manipur</option>
-                <option>Meghalaya</option>
-                <option>Mizoram</option>
-                <option>Nagaland</option>
-                <option>Odisha</option>
-                <option>Punjab</option>
-              </select>
-              <select className="w-full border rounded-lg p-2">
-                <option>Select preferred language</option>
-                <option>Malayalam</option>
-                <option>English</option>
-                <option>Hindi</option>
-                <option>Gujarati</option>
-                <option>Bengali</option>
-                <option>Tamil</option>
-                <option>Telugu</option>
-                <option>Kannada</option>
-                <option>Marathi</option>
-              </select>
-              <Button className="w-full rounded-xl">Submit</Button>
-            </CardContent>
-          </Card>
-        </motion.div>
+        
       </div>
 
       {/* Content Section */}

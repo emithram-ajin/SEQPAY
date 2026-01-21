@@ -11,8 +11,8 @@ export default function MATMPage() {
     <main className="bg-gray-50 text-gray-800">
 
       {/* HERO */}
-      <section className="bg-[#F1F1F1] mt-20 py-16">
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
+      <section className="bg-[#D5D5D5] mt-20 py-16">
+        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2  items-center">
 
           {/* LEFT */}
           <div>
@@ -34,7 +34,7 @@ export default function MATMPage() {
           {/* RIGHT IMAGE */}
           <div className="relative w-full h-[280px] md:h-[360px] flex justify-center">
             <Image
-              src="/matm.png" // place inside public/
+              src="/MATM.png" // place inside public/
               alt="Micro ATM Service"
               fill
               className="object-contain"

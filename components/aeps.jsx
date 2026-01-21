@@ -5,7 +5,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 
 export default function AEPSPage() {
   const [openFaq, setOpenFaq] = useState(null);
@@ -34,49 +33,34 @@ export default function AEPSPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 pb-15">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 py-26">
       {/* Hero Section */}
-      <section className="bg-white mt-20 py-16">
-        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 items-center gap-10">
-
-          {/* LEFT CONTENT */}
-          <div>
-            <h1 className="text-4xl md:text-5xl font-bold leading-tight">
-              Aadhaar Enabled Payment System (AEPS)
-            </h1>
-
-            <p className="mt-4 text-lg text-gray-600">
-              Cash Withdrawal & Banking Services with{" "}
-              <span className="font-semibold">SeqPay</span>
-            </p>
-
-            <p className="mt-6 max-w-xl text-gray-600">
-              AEPS allows customers to withdraw cash, check balance, and access
-              mini statements using Aadhaar authentication — fast, secure,
-              and paperless.
-            </p>
-
-            {/* CTA CARD */}
-            
-          </div>
-
-          {/* RIGHT IMAGE */}
-          <div className="relative w-full h-[280px] md:h-[360px] flex justify-center rounded-full ">
-            <Image
-              src="/aeps.png"  
-              alt="AEPS Banking Services"
-              fill
-              className="object-contain"
-              priority
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="space-y-6 justify-center flex flex-col items-center"
+        >
+          <div className="w-full max-w-xl">
+            <img
+              src="/aeps.png" // replace with your image path
+              alt="Mobile Recharge"
+              className="w-full h-auto rounded-2xl shadow-lg"
             />
           </div>
-
-        </div>
-      </section>
-
+        </motion.div>
+      </div>
 
       {/* Content Section */}
       <div className="max-w-6xl mx-auto mt-16 space-y-10">
+        <section>
+          <h2 className="text-3xl font-bold mb-3">What is AEPS?</h2>
+          <p className="text-slate-600 leading-relaxed">
+            AEPS (Aadhaar Enabled Payment System) is a digital payment system developed by the Government of India and operated by NPCI. It allows customers to perform basic banking transactions using Aadhaar number and biometric authentication, without the need for debit cards, PINs, or internet banking.
+          </p>
+        </section>
+
         <section>
           <h2 className="text-3xl font-bold mb-3">AEPS Services Offered by SeqPay</h2>
           <ul className="list-disc pl-6 text-slate-600 space-y-1">

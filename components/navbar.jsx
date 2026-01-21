@@ -110,7 +110,7 @@ export default function Navbar() {
             <Image
               src="/logonew.png"
               alt="Logo"
-              width={250}
+              width={200}
               height={20}
               className="object-contain w-32 sm:w-40 md:w-48 lg:w-56 xl:w-64 h-auto"
             />

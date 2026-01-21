@@ -19,7 +19,7 @@ export default function FAQ() {
               SeqPay – Simplifying <span className="text-gradient">Digital Financial Services</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              SeqPay is a comprehensive digital financial services brand operated by ESTA Enterprises Private Limited. We focus on delivering secure, reliable, and easy-to-use payment and banking solutions through our advanced web and mobile applications.
+              SeqPay is a leading Fintech platform operated under ESTA ENTERPRISES PVT LTD. We are committed to financial inclusion by bringing essential banking and payment services to every doorstep. Our robust technology enables local retailers to serve as a digital hub for their community, providing everything from cash withdrawals to utility payments.
             </p>
           </div>
         </FadeIn>

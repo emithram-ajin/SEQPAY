@@ -62,7 +62,6 @@ export default function BBPSPage() {
               "Electricity bills",
               "Water bills",
               "Gas / LPG bills",
-              "Mobile postpaid & prepaid recharges",
               "Broadband & DTH payments",
               "FASTag recharge",
               "Municipal & government services",

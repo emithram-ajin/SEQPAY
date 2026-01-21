@@ -10,61 +10,61 @@ import Image from "next/image"
 export default function Hero() {
   const router = useRouter()
   const services = [
-    { 
-      icon: Smartphone, 
-      title: "Aadhaar Enabled Payment System (AEPS)", 
-      desc: "Turn your shop into a bank branch. Allow customers to withdraw cash, check their account balance, and get mini-statements using only their Aadhaar number and biometric authentication." 
+    {
+      icon: Smartphone,
+      title: "Aadhaar Enabled Payment System (AEPS)",
+      desc: "Turn your shop into a bank branch. Allow customers to withdraw cash, check their account balance, and get mini-statements using only their Aadhaar number and biometric authentication."
     },
-    { 
-      icon: CreditCard, 
-      title: "Domestic Money Transfer (DMT)", 
-      desc: "Send money to any bank account across India instantly. Our secure channel ensures that funds reach the recipient in seconds, even on holidays." 
+    {
+      icon: CreditCard,
+      title: "Domestic Money Transfer (DMT)",
+      desc: "Send money to any bank account across India instantly. Our secure channel ensures that funds reach the recipient in seconds, even on holidays."
     },
-    { 
-      icon: Banknote, 
-      title: "Mini ATM (Micro ATM)", 
-      desc: "Offer cash withdrawal services through Debit Cards. Our compact, portable Micro-ATM devices are easy to use and provide a convenient way for customers to access their money." 
+    {
+      icon: Banknote,
+      title: "Mini ATM (Micro ATM)",
+      desc: "Offer cash withdrawal services through Debit Cards. Our compact, portable Micro-ATM devices are easy to use and provide a convenient way for customers to access their money."
     },
-    { 
-      icon: Receipt, 
-      title: "BBPS & Utility Bill Payments", 
-      desc: "Simplify life for your customers by accepting payments for Electricity, Water, Gas, Landline, and Broadband. Powered by Bharat Bill Pay (BBPS) for maximum reliability." 
+    {
+      icon: Receipt,
+      title: "BBPS & Utility Bill Payments",
+      desc: "Simplify life for your customers by accepting payments for Electricity, Water, Gas, Landline, and Broadband. Powered by Bharat Bill Pay (BBPS) for maximum reliability."
     },
-    { 
-      icon: Smartphone, 
-      title: "Mobile & DTH Recharge", 
-      desc: "Instant recharges for all major telecom operators and DTH service providers with high success rates and attractive margins." 
+    {
+      icon: Smartphone,
+      title: "Mobile & DTH Recharge",
+      desc: "Instant recharges for all major telecom operators and DTH service providers with high success rates and attractive margins."
     },
   ]
 
   const benefits = [
-    { 
-      icon: Shield, 
-      title: "Trust & Reliability", 
+    {
+      icon: Shield,
+      title: "Trust & Reliability",
       desc: "As a unit of ESTA ENTERPRISES PVT LTD, we prioritize transparency and security .",
       color: "from-green-600 to-emerald-600"
     },
-    { 
-      icon: TrendingUp, 
-      title: "Superior Earnings", 
+    {
+      icon: TrendingUp,
+      title: "Superior Earnings",
       desc: "Benefit from the best commission structures in the industry and grow your monthly income.",
       color: "from-blue-600 to-cyan-600"
     },
-    { 
-      icon: Zap, 
-      title: "Advanced Technology", 
+    {
+      icon: Zap,
+      title: "Advanced Technology",
       desc: "Experience a user-friendly interface with a high-speed backend to ensure seamless transactions.",
       color: "from-purple-600 to-indigo-600"
     },
-    { 
-      icon: Clock, 
-      title: "Instant Settlements", 
+    {
+      icon: Clock,
+      title: "Instant Settlements",
       desc: "Access your hard-earned money anytime with our 24/7 instant settlement feature.",
       color: "from-orange-500 to-red-500"
     },
-    { 
-      icon: Headphones, 
-      title: "Continuous Support", 
+    {
+      icon: Headphones,
+      title: "Continuous Support",
       desc: "Our dedicated helpdesk is always ready to assist you with any technical or operational queries.",
       color: "from-pink-600 to-rose-600"
     },
@@ -92,44 +92,44 @@ export default function Hero() {
   }
 
   return (
-    <section id="home" className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden">
-      <motion.div 
+    <section id="home" className="relative pt-18 pb-16 md:pt-24 md:pb-4 overflow-hidden ">
+      <motion.div
         className="absolute inset-0 -z-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        <motion.div 
-          className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" 
-          animate={{ 
+        <motion.div
+          className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"
+          animate={{
             scale: [1, 1.2, 1],
             opacity: [0.3, 0.5, 0.3]
           }}
-          transition={{ 
+          transition={{
             duration: 4,
             repeat: Infinity,
             ease: "easeInOut"
           }}
         />
-        <motion.div 
-          className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" 
-          animate={{ 
+        <motion.div
+          className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"
+          animate={{
             scale: [1, 1.2, 1],
             opacity: [0.3, 0.5, 0.3]
           }}
-          transition={{ 
+          transition={{
             duration: 4,
             repeat: Infinity,
             ease: "easeInOut",
             delay: 1
           }}
         />
-        <motion.div 
+        <motion.div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-primary/5 to-cyan-500/5 rounded-full blur-3xl"
-          animate={{ 
+          animate={{
             rotate: 360
           }}
-          transition={{ 
+          transition={{
             duration: 20,
             repeat: Infinity,
             ease: "linear"
@@ -137,11 +137,11 @@ export default function Hero() {
         />
       </motion.div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8  ">
         {/* Hero Header */}
-        <div className="grid lg:grid-cols-2 gap-12 items-center justify-center min-h-[40vh] mb-20">
+        <div className="grid lg:grid-cols-2 gap-40 items-center justify-center min-h-[40vh] mb-40">
           {/* Left Content */}
-          <div className="text-left flex flex-col justify-center mb-40 ">
+          <div className="text-left flex flex-col justify-center">
             <FadeIn delay={0}>
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary/10 to-blue-500/10 border border-primary/20 text-primary text-sm font-medium mb-8">
                 <Zap className="w-4 h-4 animate-pulse" />
@@ -184,32 +184,33 @@ export default function Hero() {
           </div>
 
           {/* Right Image */}
-          <div className="relative flex flex-col justify-center">
+          <div className="relative flex flex-col justify-center items-center pt-2 lg:pt-6">
             <FadeIn delay={0.3}>
-              <div className="relative ml-10">
+              <div className="relative w-[320px] md:w-[300px] lg:w-[380px] mx-auto">
                 <Image
                   src="/heroimagee.jpeg"
                   alt="SeqPay Hero"
                   width={500}
-                  height={50}
-                  className="rounded-2xl shadow-2xl  h-auto"
+                  height={300}
+                  className="rounded-2xl shadow-2xl w-full h-auto"
                 />
               </div>
             </FadeIn>
 
+
             {/* Buttons under image */}
             <FadeIn delay={0.5}>
-              <motion.div 
+              <motion.div
                 className="flex flex-wrap gap-4 mt-8 justify-center"
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
               >
                 <motion.div variants={itemVariants}>
-                  <Button 
-                    size="lg" 
-                    className="gap-2" 
-                    whileHover={{ scale: 1.05 }} 
+                  <Button
+                    size="lg"
+                    className="gap-2"
+                    whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => router.push('/retailer')}
                   >
@@ -217,11 +218,11 @@ export default function Hero() {
                   </Button>
                 </motion.div>
                 <motion.div variants={itemVariants}>
-                  <Button 
-                    size="lg" 
-                    variant="outline" 
-                    className="gap-2" 
-                    whileHover={{ scale: 1.05 }} 
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="gap-2"
+                    whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => router.push('/distributor')}
                   >
@@ -233,7 +234,7 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* About Section */}
+        {/* About Section
         <FadeIn delay={0.5}>
           <div className="max-w-6xl mx-auto text-center mb-20">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">About SeqPay</h2>
@@ -241,22 +242,22 @@ export default function Hero() {
               SeqPay is a leading Fintech platform operated under ESTA ENTERPRISES PVT LTD. We are committed to financial inclusion by bringing essential banking and payment services to every doorstep. Our robust technology enables local retailers to serve as a digital hub for their community, providing everything from cash withdrawals to utility payments.
             </p>
           </div>
-        </FadeIn>
+        </FadeIn> */}
 
-        
+
 
         {/* Benefits Section */}
         <FadeIn delay={0.7}>
-          <div className="mb-20">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+          <div className="my-20">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 ">
               Why Partner with <span className="text-gradient">SeqPay?</span>
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
               {benefits.slice(0, 3).map((benefit, idx) => (
                 <ScaleIn key={idx} delay={0.1 * idx}>
-                  <motion.div 
+                  <motion.div
                     className="group relative p-6 rounded-2xl bg-gradient-to-br from-primary/5 to-blue-500/5 border border-primary/20 hover:shadow-lg transition-all overflow-hidden"
-                    whileHover={{ 
+                    whileHover={{
                       scale: 1.05,
                       borderColor: "rgba(var(--primary), 0.5)"
                     }}
@@ -264,7 +265,7 @@ export default function Hero() {
                   >
                     {/* Gradient overlay on hover */}
                     <div className={`absolute inset-0 bg-gradient-to-br ${benefit.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
-                    
+
                     <div className="relative">
                       <motion.div
                         initial={{ scale: 1 }}
@@ -286,9 +287,9 @@ export default function Hero() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {benefits.slice(3).map((benefit, idx) => (
                 <ScaleIn key={idx + 3} delay={0.1 * (idx + 3)}>
-                  <motion.div 
+                  <motion.div
                     className="group relative p-6 rounded-2xl bg-gradient-to-br from-primary/5 to-blue-500/5 border border-primary/20 hover:shadow-lg transition-all overflow-hidden"
-                    whileHover={{ 
+                    whileHover={{
                       scale: 1.05,
                       borderColor: "rgba(var(--primary), 0.5)"
                     }}
@@ -296,7 +297,7 @@ export default function Hero() {
                   >
                     {/* Gradient overlay on hover */}
                     <div className={`absolute inset-0 bg-gradient-to-br ${benefit.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
-                    
+
                     <div className="relative">
                       <motion.div
                         initial={{ scale: 1 }}
@@ -319,7 +320,7 @@ export default function Hero() {
         </FadeIn>
 
         {/* Partnership Model */}
-       
+
       </div>
     </section>
   )

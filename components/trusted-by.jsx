@@ -1,46 +1,47 @@
 "use client"
 
 import { FadeIn, ScaleIn } from "./motion-wrapper"
-import { Shield, Smartphone, CreditCard, Banknote, Receipt, Zap } from "lucide-react"
+import { Shield, Smartphone, CreditCard, Banknote, Receipt, Zap, ShieldCheck } from "lucide-react"
 import { motion } from "framer-motion"
 
 const services = [
-  { 
-    icon: Smartphone, 
-    title: "Aadhaar Enabled Payment System (AEPS)", 
+  {
+    icon: Smartphone,
+    title: "Aadhaar Enabled Payment System (AEPS)",
     desc: "Turn your shop into a bank branch. Allow customers to withdraw cash, check their account balance, and get mini-statements using only their Aadhaar number and biometric authentication.",
     color: "from-blue-600 to-blue-700"
   },
-  { 
-    icon: CreditCard, 
-    title: "Domestic Money Transfer (DMT)", 
+  {
+    icon: CreditCard,
+    title: "Domestic Money Transfer (DMT)",
     desc: "Send money to any bank account across India instantly. Our secure channel ensures that funds reach the recipient in seconds, even on holidays.",
     color: "from-green-600 to-emerald-600"
   },
-  { 
-    icon: Banknote, 
-    title: "Mini ATM (Micro ATM)", 
+  {
+    icon: Banknote,
+    title: "Mini ATM (Micro ATM)",
     desc: "Offer cash withdrawal services through Debit Cards. Our compact, portable Micro-ATM devices are easy to use and provide a convenient way for customers to access their money.",
     color: "from-purple-600 to-indigo-600"
   },
-  { 
-    icon: Receipt, 
-    title: "BBPS & Utility Bill Payments", 
+  {
+    icon: Receipt,
+    title: "BBPS & Utility Bill Payments",
     desc: "Simplify life for your customers by accepting payments for Electricity, Water, Gas, Landline, and Broadband. Powered by Bharat Bill Pay (BBPS) for maximum reliability.",
     color: "from-cyan-600 to-blue-600"
   },
-  { 
-    icon: Smartphone, 
-    title: "Mobile & DTH Recharge", 
-    desc: "Instant recharges for all major telecom operators and DTH service providers with high success rates and attractive margins.",
+  {
+    icon: Smartphone,
+    title: "Mobile & DTH Recharge",
+    desc: "Instant recharges for all major telecom operators and DTH service providers with high success rates, attractive margins, real-time status updates, and seamless transaction processing.",
     color: "from-orange-500 to-red-500"
   },
-  { 
-    icon: CreditCard, 
-    title: "Domestic Money Transfer (DMT)", 
-    desc: "Send money to any bank account across India instantly. Our secure channel ensures that funds reach the recipient in seconds, even on holidays.",
-    color: "from-green-600 to-emerald-600"
+  {
+    icon: ShieldCheck,
+    title: "Insurance Services",
+    desc: "Get instant access to health, life, motor, and general insurance plans. Compare policies, enjoy seamless enrollment, and ensure secure coverage for you and your family.",
+    color: "from-blue-600 to-indigo-600"
   }
+
 ]
 
 export default function TrustedBy() {
@@ -71,9 +72,9 @@ export default function TrustedBy() {
         <div className="grid md:grid-cols-2 gap-8">
           {services.map((service, idx) => (
             <ScaleIn key={idx} delay={0.1 * idx}>
-              <motion.div 
+              <motion.div
                 className="group relative p-8 rounded-2xl bg-card border border-border hover:border-primary/50 hover:shadow-lg transition-all overflow-hidden"
-                whileHover={{ 
+                whileHover={{
                   scale: 1.02,
                   boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
                 }}
@@ -81,7 +82,7 @@ export default function TrustedBy() {
               >
                 {/* Gradient overlay on hover */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
-                
+
                 <div className="relative">
                   <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${service.color} p-0.5 mb-4`}>
                     <div className="w-full h-full rounded-xl bg-background flex items-center justify-center">
