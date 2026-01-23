@@ -3,6 +3,8 @@
 import { Users, TrendingUp, ArrowRight } from "lucide-react"
 import { FadeIn } from "./motion-wrapper"
 import { Button } from "@/components/ui/button"
+import { useRouter } from "next/navigation"
+
 
 const partnerships = [
   {
@@ -12,7 +14,8 @@ const partnerships = [
     description: "Start your own digital service center with minimal investment. Provide banking services to your local customers and earn a commission.",
     color: "from-green-500 to-emerald-500",
     buttonText: "Get Started",
-    buttonVariant: "default"
+    buttonVariant: "default",
+    route: "/retailer",
   },
   {
     icon: TrendingUp,
@@ -21,15 +24,19 @@ const partnerships = [
     description: "Build and manage your own network of retailers. Earn passive income through every transaction made within your network.",
     color: "from-blue-500 to-cyan-500",
     buttonText: "Learn More",
-    buttonVariant: "outline"
+    buttonVariant: "outline",
+    route: "/distributor",
   },
 ]
 
 export default function HowItWorks() {
+
+  const router = useRouter()
+
   return (
     <section id="how-it-works" className="py-20 md:py-32 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-muted/50 via-muted/30 to-background" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-r from-primary/10 via-blue-500/10 to-cyan-500/10 rounded-full blur-3xl" />
+      <div className="absolute inset-0  pointer-events-none bg-gradient-to-b from-muted/50 via-muted/30 to-background" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 pointer-events-none w-[800px] h-[400px] bg-gradient-to-r from-primary/10 via-blue-500/10 to-cyan-500/10 rounded-full blur-3xl" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <FadeIn>
@@ -53,7 +60,7 @@ export default function HowItWorks() {
                 <div className="relative bg-background rounded-3xl p-8 border border-border/50 shadow-lg hover:shadow-2xl hover:border-primary/30 hover:-translate-y-2 transition-all duration-500 overflow-hidden h-full flex flex-col">
                   {/* Background glow */}
                   <div
-                    className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
+                    className={`absolute inset-0 pointer-events-none bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
                   />
 
                   {/* Step number badge */}
@@ -83,11 +90,15 @@ export default function HowItWorks() {
                     {item.title}
                   </h3>
                   <p className="text-muted-foreground leading-relaxed mb-6 flex-grow">{item.description}</p>
-                  
-                  <Button 
-                    className="w-full" 
+
+                  <Button
+                    className="w-full cursor-pointer"
                     variant={item.buttonVariant}
                     size="lg"
+                    onClick={() => {
+                      console.log("Button clicked:", item.title)
+                      router.push(item.route)
+                    }}
                   >
                     {item.buttonText} <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>

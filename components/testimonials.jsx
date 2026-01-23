@@ -6,26 +6,26 @@ import { FadeIn } from "./motion-wrapper"
 
 const testimonials = [
   {
-    name: "Priya Sharma",
-    role: "Founder, ShopEase",
+    name: "Selvamani",
+    role: "E-Sevai Center, Thoothukudi",
     content:
-      "SeqPay transformed our payment experience. The integration was seamless and our conversion rates improved by 25%.",
+    "I use SeqPay for DTH and Mobile recharges. The success rate is 100%. If thereis ever a small doubt, the Tamil-speaking customer support team helps me immediately. Very reliable",
     rating: 5,
     image: "/professional-woman-portrait.png",
   },
   {
-    name: "Rahul Verma",
+    name: "Meera Nandan",
     role: "CTO, TechStart",
     content:
-      "The API documentation is excellent. We integrated SeqPay in just 2 days. The real-time dashboard is incredibly useful.",
-    rating: 5,
+      "I use the BBPS feature daily for electricity and water bill payments. The real-time confirmation gives my customers peace of mind, and I get the best commission rates in the market.",
+    rating: 4,
     image: "/professional-man-portrait.png",
   },
   {
-    name: "Anita Desai",
-    role: "CEO, FoodHub",
+    name: "Arshad Ali",
+    role: "Travel Agency, Kasaragod",
     content:
-      "Customer support is outstanding. Any issue we had was resolved within hours. Highly recommend for any business.",
+      "I use SeqPay mainly for Domestic Money Transfer . Even on bank holidays, the money reaches the  account within seconds. It's the most reliable portal I have used so far.",
     rating: 5,
     image: "/professional-indian-woman-portrait.png",
   },
@@ -58,7 +58,7 @@ export default function Testimonials() {
             <FadeIn key={testimonial.name} delay={index * 0.1}>
               <Card className="group relative border border-border/50 bg-background hover:border-primary/30 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden h-full">
                 {/* Quote icon decoration */}
-                <div className="absolute top-4 right-4 text-primary/10 group-hover:text-primary/20 transition-colors">
+                <div className="absolute top-4 right-4 text-primary/40 group-hover:text-primary/60 transition-colors">
                   <Quote className="w-12 h-12" />
                 </div>
 
@@ -90,7 +90,7 @@ export default function Testimonials() {
                         </div>
                       </div>
                       {/* Online indicator */}
-                      <div className="absolute -bottom-0.5 -right-0.5 w-4 h-4 rounded-full bg-green-500 border-2 border-background" />
+                      {/* <div className="absolute -bottom-0.5 -right-0.5 w-4 h-4 rounded-full bg-green-500 border-2 border-background" /> */}
                     </div>
                     <div>
                       <p className="font-semibold text-foreground">{testimonial.name}</p>
