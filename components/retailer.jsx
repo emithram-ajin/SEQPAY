@@ -153,7 +153,7 @@ export default function RetailerPage() {
         <div className="w-full max-w-xl bg-white/10 backdrop-blur-sm rounded-3xl p-6 md:p-8 flex flex-col items-center border border-white/20">
           <div className="text-center mb-6">
             <div className="flex items-center justify-center mb-2">
-              <div className="w-24 h-12 rounded-xl overflow-hidden flex-shrink-0 mb-6">
+              <div className="w-24 h-18 rounded-xl overflow-hidden flex-shrink-0 mb-6">
                 <img
                   src="/seqpaylogo.png"
                   alt="SeqPay Logo"

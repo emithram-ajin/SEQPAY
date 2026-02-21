@@ -26,11 +26,40 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata = {
-  title: "SeqPay",
+  title: "SeqPay | Seamless Payment Solutions for Businesses",
   description:
-    "Accept payments seamlessly with SeqPay. Support for UPI, credit cards, debit cards, and netbanking with industry-leading security.",
+    "SeqPay provides secure and fast payment solutions including AEPS, DMT, BBPS, and more. Transform your shop into a digital service hub with SeqPay.",
+  keywords: "SeqPay, Fintech, AEPS, DMT, BBPS, Digital Payments, Business Payments, Money Transfer, Bill Payments, Recharge",
+  authors: [{ name: "SeqPay Team" }],
+  creator: "ESTA Enterprises Pvt Ltd",
+  publisher: "ESTA Enterprises Pvt Ltd",
+  openGraph: {
+    title: "SeqPay | Seamless Payment Solutions for Businesses",
+    description: "Accept payments seamlessly with SeqPay. Support for AEPS, DMT, BBPS, and industry-leading security.",
+    url: "https://seqpay.in",
+    siteName: "SeqPay",
+    images: [
+      {
+        url: "/og-image.png", // Ensure this image exists or provide a valid path
+        width: 1200,
+        height: 630,
+        alt: "SeqPay - Secure Payments",
+      },
+    ],
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SeqPay | Seamless Payment Solutions for Businesses",
+    description: "Accept payments seamlessly with SeqPay. Support for AEPS, DMT, BBPS, and industry-leading security.",
+    images: ["/og-image.png"],
+  },
   icons: {
-    icon: "/logonew.png",
+    icon: "/favicon.ico",
+  },
+  alternates: {
+    canonical: "https://seqpay.in",
   },
 }
 
