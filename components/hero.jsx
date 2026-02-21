@@ -41,7 +41,7 @@ export default function Hero() {
     {
       icon: Shield,
       title: "Trust & Reliability",
-      desc: "As a unit of ESTA ENTERPRISES PVT LTD, we prioritize transparency and security .",
+      desc: "As a unit of ESTA ENTERPRISES PVT LTD, we prioritize transparency , data security, and ethical business practices.",
       color: "from-green-600 to-emerald-600"
     },
     {
