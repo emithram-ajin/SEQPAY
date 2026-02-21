@@ -49,18 +49,18 @@ export default function Footer() {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
         <FadeIn>
-          <div className="grid grid-cols-2 md:grid-cols-6 gap-8 lg:gap-12 ">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-10 lg:gap-16 items-start">
             {/* Brand */}
-            <div className="col-span-2">
-              <div className="flex items-center ">
-                <div className="w-32 h-32 rounded-xl overflow-hidden shadow-lg">
+            <div className="sm:col-span-2">
+              <div className="flex items-center gap-4 mb-8 ">
+                <div className="w-24 h-12 rounded-xl overflow-hidden shadow-lg flex-shrink-0">
                   <img
-                    src="logonew.png"
+                    src="seqpaylogo.png"
                     alt="SeqPay Logo"
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-cover  invert brightness-0 "
                   />
                 </div>
-                <span className="text-2xl font-bold">SEQPAY</span>
+                {/* <span className="text-2xl font-bold tracking-tight">SEQPAY</span> */}
               </div>
 
               <p className="text-background/60 text-sm mb-8 max-w-xs leading-relaxed">
@@ -68,15 +68,15 @@ export default function Footer() {
                 All Rights Reserved. Safe | Secure | Seamless
               </p>
 
-              <div className="flex gap-3">
+              <div className="flex gap-4">
                 {socialLinks.map((social) => (
                   <a
                     key={social.name}
                     href={social.href}
-                    className="w-10 h-10 rounded-xl bg-background/10 hover:bg-primary hover:scale-110 flex items-center justify-center transition-all duration-300"
+                    className="w-10 h-10 rounded-xl bg-background/10 hover:bg-primary hover:scale-110 flex items-center justify-center transition-all duration-300 group"
                     aria-label={social.name}
                   >
-                    <social.icon className="w-5 h-5" />
+                    <social.icon className="w-5 h-5 group-hover:text-white transition-colors" />
                   </a>
                 ))}
               </div>
@@ -84,14 +84,14 @@ export default function Footer() {
 
             {/* Links */}
             {Object.entries(footerLinks).map(([category, links]) => (
-              <div key={category}>
-                <h4 className="font-semibold mb-5 text-background">{category}</h4>
-                <ul className="space-y-3">
+              <div key={category} className="space-y-6">
+                <h4 className="font-bold text-sm uppercase tracking-wider text-background/90">{category}</h4>
+                <ul className="space-y-4">
                   {links.map((link) => (
                     <li key={link.name}>
                       <a
                         href={link.href}
-                        className="text-sm text-background/60 hover:text-primary transition-colors duration-200 inline-block"
+                        className="text-[15px] text-background/50 hover:text-primary transition-colors duration-200 inline-block"
                       >
                         {link.name}
                       </a>
@@ -105,11 +105,13 @@ export default function Footer() {
 
         {/* Bottom */}
         <FadeIn delay={0.1}>
-          <div className="pt-8 border-t border-background/10 flex flex-col md:flex-row items-center justify-between gap-6">
-            <p className="text-sm text-background/50">© 2026 SeqPay. All rights reserved.</p>
+          <div className="mt-5 pt-8 border-t border-background/10 flex flex-col md:flex-row items-center justify-between gap-8">
+            <p className="text-sm text-background/50 text-center md:text-left">
+              © 2026 SeqPay. All rights reserved.
+            </p>
 
-            <div className="flex items-center gap-8">
-              <div className="flex items-center gap-6 text-sm text-background/50">
+            <div className="flex flex-col sm:flex-row items-center gap-6 md:gap-8">
+              <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-background/50">
                 <span className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
                   PCI DSS Compliant

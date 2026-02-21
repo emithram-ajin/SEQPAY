@@ -34,7 +34,7 @@ export default function MATMPage() {
           {/* RIGHT IMAGE */}
           <div className="relative w-full h-[280px] md:h-[360px] flex justify-center">
             <Image
-              src="/MATM.png" // place inside public/
+              src="/matm.png" // place inside public/
               alt="Micro ATM Service"
               fill
               className="object-contain"

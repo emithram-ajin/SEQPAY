@@ -39,11 +39,11 @@ export default function RetailerPage() {
   ];
 
   const states = [
-    "Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chhattisgarh","Goa",
-    "Gujarat","Haryana","Himachal Pradesh","Jharkhand","Karnataka","Kerala",
-    "Madhya Pradesh","Maharashtra","Manipur","Meghalaya","Mizoram","Nagaland",
-    "Odisha","Punjab","Rajasthan","Sikkim","Tamil Nadu","Telangana","Tripura",
-    "Uttar Pradesh","Uttarakhand","West Bengal",
+    "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa",
+    "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala",
+    "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland",
+    "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura",
+    "Uttar Pradesh", "Uttarakhand", "West Bengal",
   ];
 
   const [isStateOpen, setIsStateOpen] = useState(false);
@@ -147,36 +147,36 @@ export default function RetailerPage() {
 
 
   return (
-    <div className="h-screen bg-white flex flex-col md:flex-row pt-16 md:pt-20 overflow-hidden">
+    <div className="min-h-screen bg-white flex flex-col md:flex-row pt-16 md:pt-20 overflow-hidden">
       {/* Left Column - Promotional Banner */}
-      <div className="w-full md:w-1/2 bg-[#95c3f4] flex flex-col items-center justify-center p-4 md:p-10 relative overflow-hidden">
+      <div className="w-full md:w-1/2 bg-[#95c3f4] flex flex-col items-center justify-center  p-4 md:p-6 relative">
         <div className="w-full max-w-xl bg-white/10 backdrop-blur-sm rounded-3xl p-6 md:p-8 flex flex-col items-center border border-white/20">
           <div className="text-center mb-6">
-            <div className="flex items-center justify-center gap-2 mb-2">
-              <Image
-                src="/logo.png"
-                alt="Logo"
-                width={180}
-                height={35}
-                className="invert brightness-0"
-              />
+            <div className="flex items-center justify-center mb-2">
+              <div className="w-24 h-12 rounded-xl overflow-hidden flex-shrink-0 mb-6">
+                <img
+                  src="/seqpaylogo.png"
+                  alt="SeqPay Logo"
+                  className="w-full h-full object-cover invert brightness-0"
+                />
+              </div>
             </div>
-            <p className="text-white text-base font-medium tracking-wide">
+            <p className="text-white text-sm font-medium tracking-wide uppercase opacity-90">
               Making Life Simple
             </p>
           </div>
 
           {/* Services Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 w-full p-4">
             {services.map((service, index) => (
               <div
                 key={index}
-                className="bg-white rounded-2xl p-3 flex flex-col items-center justify-center text-center shadow-lg transition-transform hover:scale-105 border-b-4 border-[#0066CC]/20"
+                className="bg-white rounded-2xl p-4 flex flex-col items-center justify-center text-center shadow-lg transition-transform hover:scale-105 border-b-4 border-[#0066CC]/20"
               >
-                <div className="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center mb-2">
+                <div className="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center mb-1.5">
                   <service.icon className="w-5 h-5 text-[#0066CC]" />
                 </div>
-                <span className="text-[9px] font-bold text-[#1e3a8a] leading-tight uppercase">
+                <span className="text-[10px] font-bold text-[#1e3a8a] leading-tight uppercase">
                   {service.label}
                 </span>
               </div>
@@ -193,23 +193,21 @@ export default function RetailerPage() {
       </div>
 
       {/* Right Column - Form */}
-      <div className="w-full md:w-1/2 p-4 md:px-8 md:py-6 flex flex-col items-center justify-center overflow-y-auto bg-[#95c3f4]">
-
-
-        <div className="w-full max-w-md bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden flex flex-col">
-          <div className=" py-6 px-6 text-center">
-            <h2 className="text-blue-950 font-semibold text-sm">
-              Create Bussiness Retailer Account
+      <div className="w-full md:w-1/2 p-4 md:px-8 md:py-6 flex flex-col items-center justify-center bg-[#95c3f4]">
+        <div className="w-full max-w-md bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden flex flex-col">
+          <div className="pt-6 pb-2 px-6 text-center">
+            <h2 className="text-blue-950 font-bold text-lg uppercase tracking-tight">
+              Create Business Account
             </h2>
           </div>
 
-          <div className="p-4 md:p-6 flex-1 flex flex-col">
-            <p className="text-center text-[11px] text-gray-600 mb-4 font-medium">
+          <div className="p-4 md:px-8 md:pb-6 flex flex-col">
+            <p className="text-center text-[11px] text-gray-500 mb-4 font-medium">
               Start transacting securely with SEQPay today
             </p>
 
-            <form className="space-y-3 flex-1 flex flex-col justify-between"
-            onSubmit={handleSubmit}>
+            <form className="space-y-3 flex flex-col"
+              onSubmit={handleSubmit}>
               <div className="space-y-3">
                 <input
                   type="text"
@@ -226,11 +224,11 @@ export default function RetailerPage() {
                   placeholder="Mobile Number"
                   className="w-full px-4 py-2.5 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#1e3a8a] focus:border-transparent transition-all"
                   value={formData.mobile}
-                 onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    mobile: e.target.value.replace(/\D/g, "").slice(0, 10),
-                  })}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      mobile: e.target.value.replace(/\D/g, "").slice(0, 10),
+                    })}
                 />
 
                 {/* Custom Modern Searchable State Dropdown */}
@@ -316,7 +314,7 @@ export default function RetailerPage() {
                   />
                   <label
                     htmlFor="agree"
-                    className="text-[10px] text-gray-600 leading-tight"
+                    className="text-[13px] text-gray-600 leading-tight"
                   >
                     I agree to receive communication over whatsapp, RCS service,
                     mobile & email.
@@ -326,14 +324,14 @@ export default function RetailerPage() {
 
               <button
                 type="submit"
-                className="w-full bg-[#1e3a8a] hover:bg-[#1e40af] text-white font-bold py-2.5 rounded-full transition-all flex items-center justify-center gap-2 group text-sm mt-3"
+                className="w-full bg-[#1e3a8a] hover:bg-[#1e40af] text-white font-bold py-3 rounded-full transition-all flex items-center justify-center gap-2 group text-sm mt-4 shadow-lg hover:shadow-[#1e3a8a]/20"
               >
                 Register
                 <ChevronRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </button>
             </form>
 
-            <div className="mt-3 text-center">
+            <div className="mt-4 text-center">
               <button
                 onClick={() =>
                   window.open("https://partners.seqpay.in/login", "_blank")
@@ -341,14 +339,14 @@ export default function RetailerPage() {
                 className="text-xs font-medium text-gray-600 hover:text-[#1e3a8a] transition-colors"
               >
                 Already registered?{" "}
-                <span className="text-[#1e3a8a]">Log in.</span>
+                <span className="text-[#1e3a8a] font-bold">Log in.</span>
               </button>
             </div>
           </div>
         </div>
 
         <div className="mt-4">
-          <p className="text-[10px] text-gray-400 text-center max-w-[320px] leading-tight">
+          <p className="text-[10px] text-gray-600 text-center max-w-[320px] leading-tight">
             © SEQPay Digital Services. All rights reserved.
           </p>
         </div>
