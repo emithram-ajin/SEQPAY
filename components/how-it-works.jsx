@@ -55,7 +55,7 @@ export default function HowItWorks() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-5xl mx-auto">
           {partnerships.map((item, index) => (
-            <FadeIn key={item.title} delay={index * 0.15}>
+            <FadeIn key={item.title} delay={index * 0.15} className="h-full">
               <div className="relative group">
                 <div className="relative bg-background rounded-3xl p-8 border border-border/50 shadow-lg hover:shadow-2xl hover:border-primary/30 hover:-translate-y-2 transition-all duration-500 overflow-hidden h-full flex flex-col">
                   {/* Background glow */}

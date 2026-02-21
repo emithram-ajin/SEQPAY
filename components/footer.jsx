@@ -31,7 +31,7 @@ const footerLinks = {
 }
 
 const socialLinks = [
-  { name: "Youtube", icon: Youtube, href: "#" },
+  { name: "Youtube", icon: Youtube, href: "https://www.youtube.com/@emitramcsp" },
   { name: "Facebook", icon: Facebook, href: "#" },
   { name: "Twitter", icon: Twitter, href: "#" },
   { name: "Instagram", icon: Instagram, href: "#" },

@@ -69,11 +69,11 @@ export default function TrustedBy() {
           </div>
         </FadeIn>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {services.map((service, idx) => (
-            <ScaleIn key={idx} delay={0.1 * idx}>
+            <ScaleIn key={idx} delay={0.1 * idx} className="h-full">
               <motion.div
-                className="group relative p-8 rounded-2xl bg-card border border-border hover:border-primary/50 hover:shadow-lg transition-all overflow-hidden"
+                className="group relative h-full p-8 rounded-2xl bg-card border border-border hover:border-primary/50 hover:shadow-lg transition-all overflow-hidden"
                 whileHover={{
                   scale: 1.02,
                   boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"

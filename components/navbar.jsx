@@ -86,11 +86,10 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-background/95 backdrop-blur-xl shadow-sm border-b border-border/50"
-          : "bg-transparent"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
+        ? "bg-background/95 backdrop-blur-xl shadow-sm border-b border-border/50"
+        : "bg-transparent"
+        }`}
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
@@ -108,11 +107,11 @@ export default function Navbar() {
             className="flex items-center gap-2.5 group"
           >
             <Image
-              src="/logonew.png"
-              alt="Logo"
-              width={200}
-              height={20}
-              className="object-contain w-32 sm:w-40 md:w-48 lg:w-56 xl:w-64 h-auto"
+              src="/seqpaylogo.png"
+              alt="SeqPay Logo"
+              width={160}
+              height={40}
+              className="object-contain w-28 sm:w-36 md:w-40 h-auto"
             />
           </a>
 
@@ -248,9 +247,8 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         <div
-          className={`md:hidden overflow-hidden transition-all duration-300 ease-out ${
-            mobileMenuOpen ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
-          }`}
+          className={`md:hidden overflow-hidden transition-all duration-300 ease-out ${mobileMenuOpen ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
+            }`}
         >
           <div className="py-4 border-t border-border/50">
             <div className="flex flex-col gap-1">
@@ -305,17 +303,37 @@ export default function Navbar() {
               ))}
 
               {/* Mobile Buttons */}
-              <div className="flex flex-col gap-2 pt-4 mt-2 border-t border-border/50">
-                <Button variant="ghost" size="sm" className="justify-start">
-                  Sign In
-                </Button>
+              <div className="flex flex-col gap-2 pt-4 mt-2 border-t border-border/50 px-4">
                 <Button
+                  variant="outline"
                   size="sm"
-                  className="bg-gradient-to-r from-primary to-blue-600"
+                  className="w-full justify-center"
+                  onClick={() => window.open("https://partners.seqpay.in/login", "_blank")}
                 >
-                  <Sparkles className="w-4 h-4 mr-1.5" />
-                  Get Started
+                  Login
                 </Button>
+                <div className="grid grid-cols-2 gap-2">
+                  <Button
+                    size="sm"
+                    className="bg-primary text-white"
+                    onClick={() => {
+                      router.push('/retailer')
+                      setMobileMenuOpen(false)
+                    }}
+                  >
+                    Retailer
+                  </Button>
+                  <Button
+                    size="sm"
+                    className="bg-blue-600 text-white"
+                    onClick={() => {
+                      router.push('/distributor')
+                      setMobileMenuOpen(false)
+                    }}
+                  >
+                    Distributor
+                  </Button>
+                </div>
               </div>
             </div>
           </div>

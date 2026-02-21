@@ -92,7 +92,7 @@ export default function Hero() {
   }
 
   return (
-    <section id="home" className="relative pt-18 pb-16 md:pt-24 md:pb-4 overflow-hidden ">
+    <section id="home" className="relative pt-22 pb-16 md:pt-28 md:pb-4 overflow-hidden ">
       <motion.div
         className="absolute inset-0 -z-10"
         initial={{ opacity: 0 }}
@@ -139,7 +139,7 @@ export default function Hero() {
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8  ">
         {/* Hero Header */}
-        <div className="grid lg:grid-cols-2 gap-40 items-center justify-center min-h-[40vh] mb-40">
+        <div className="grid lg:grid-cols-2 gap-12 md:gap-24 lg:gap-40 items-center justify-center min-h-[40vh] mb-20 lg:mb-40">
           {/* Left Content */}
           <div className="text-left flex flex-col justify-center">
             <FadeIn delay={0}>
@@ -186,7 +186,7 @@ export default function Hero() {
           {/* Right Image */}
           <div className="relative flex flex-col justify-center items-center pt-2 lg:pt-6">
             <FadeIn delay={0.3}>
-              <div className="relative w-[320px] md:w-[300px] lg:w-[380px] mx-auto">
+              <div className="relative w-full max-w-[320px] md:max-w-[300px] lg:max-w-[380px] mx-auto">
                 <Image
                   src="/heroimagee.jpeg"
                   alt="SeqPay Hero"
@@ -254,9 +254,9 @@ export default function Hero() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
               {benefits.slice(0, 3).map((benefit, idx) => (
-                <ScaleIn key={idx} delay={0.1 * idx}>
+                <ScaleIn key={idx} delay={0.1 * idx} className="h-full">
                   <motion.div
-                    className="group relative p-6 rounded-2xl bg-gradient-to-br from-primary/5 to-blue-500/5 border border-primary/20 hover:shadow-lg transition-all overflow-hidden"
+                    className="group relative h-full p-6 rounded-2xl bg-gradient-to-br from-primary/5 to-blue-500/5 border border-primary/20 hover:shadow-lg transition-all overflow-hidden"
                     whileHover={{
                       scale: 1.05,
                       borderColor: "rgba(var(--primary), 0.5)"
@@ -286,9 +286,9 @@ export default function Hero() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {benefits.slice(3).map((benefit, idx) => (
-                <ScaleIn key={idx + 3} delay={0.1 * (idx + 3)}>
+                <ScaleIn key={idx + 3} delay={0.1 * (idx + 3)} className="h-full">
                   <motion.div
-                    className="group relative p-6 rounded-2xl bg-gradient-to-br from-primary/5 to-blue-500/5 border border-primary/20 hover:shadow-lg transition-all overflow-hidden"
+                    className="group relative h-full p-6 rounded-2xl bg-gradient-to-br from-primary/5 to-blue-500/5 border border-primary/20 hover:shadow-lg transition-all overflow-hidden"
                     whileHover={{
                       scale: 1.05,
                       borderColor: "rgba(var(--primary), 0.5)"

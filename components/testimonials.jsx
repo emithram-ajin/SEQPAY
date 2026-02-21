@@ -9,7 +9,7 @@ const testimonials = [
     name: "Selvamani",
     role: "E-Sevai Center, Thoothukudi",
     content:
-    "I use SeqPay for DTH and Mobile recharges. The success rate is 100%. If thereis ever a small doubt, the Tamil-speaking customer support team helps me immediately. Very reliable",
+      "I use SeqPay for DTH and Mobile recharges. The success rate is 100%. If thereis ever a small doubt, the Tamil-speaking customer support team helps me immediately. Very reliable",
     rating: 5,
     image: "/professional-woman-portrait.png",
   },
@@ -55,7 +55,7 @@ export default function Testimonials() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
-            <FadeIn key={testimonial.name} delay={index * 0.1}>
+            <FadeIn key={testimonial.name} delay={index * 0.1} className="h-full">
               <Card className="group relative border border-border/50 bg-background hover:border-primary/30 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 overflow-hidden h-full">
                 {/* Quote icon decoration */}
                 <div className="absolute top-4 right-4 text-primary/40 group-hover:text-primary/60 transition-colors">

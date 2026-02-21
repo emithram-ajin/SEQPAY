@@ -73,7 +73,7 @@ export default function Features() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {features.map((feature, index) => (
-            <FadeIn key={feature.title} delay={index * 0.1}>
+            <FadeIn key={feature.title} delay={index * 0.1} className="h-full">
               <Card className="group relative border border-border/50 bg-card/50 backdrop-blur hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-2 transition-all duration-500 overflow-hidden h-full">
                 {/* Gradient overlay on hover */}
                 <div
