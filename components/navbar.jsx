@@ -6,6 +6,7 @@ import { Menu, X, Sparkles, ChevronDown } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { name: "Home", href: "/", type: "scroll" },
@@ -111,7 +112,7 @@ export default function Navbar() {
               alt="SeqPay Logo"
               width={160}
               height={40}
-              className="object-contain w-28 sm:w-36 md:w-40 h-auto"
+              className="object-contain w-20 sm:w-24  md:w-28 h-auto"
             />
           </a>
 
@@ -246,98 +247,123 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Menu */}
-        <div
-          className={`md:hidden overflow-hidden transition-all duration-300 ease-out ${mobileMenuOpen ? "max-h-[1000px] opacity-100" : "max-h-0 opacity-0"
-            }`}
-        >
-          <div className="py-4 border-t border-border/50">
-            <div className="flex flex-col gap-1">
-              {navLinks.map((link, index) => (
-                <div key={link.name}>
-                  <a
-                    href={link.href}
-                    onClick={(e) => {
-                      if (link.type !== "submenu") {
-                        handleNavigation(e, link);
-                        setMobileMenuOpen(false);
-                      } else {
-                        e.preventDefault();
-                        setMobileSubmenuOpen((prev) => ({
-                          ...prev,
-                          [link.name]: !prev[link.name],
-                        }));
-                      }
-                    }}
-                    className="px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-all duration-200 flex justify-between items-center"
-                  >
-                    {link.name}
-                    {link.submenu && <ChevronDown className="w-4 h-4 ml-2" />}
-                  </a>
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="md:hidden overflow-hidden bg-background/98 backdrop-blur-2xl border-t border-border/50"
+            >
+              <div className="py-6 px-4 space-y-2">
+                <div className="flex flex-col gap-1">
+                  {navLinks.map((link) => (
+                    <div key={link.name}>
+                      <button
+                        onClick={(e) => {
+                          if (link.submenu) {
+                            setMobileSubmenuOpen((prev) => ({
+                              ...prev,
+                              [link.name]: !prev[link.name],
+                            }));
+                          } else {
+                            handleNavigation(e, link);
+                            setMobileMenuOpen(false);
+                          }
+                        }}
+                        className={`w-full px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 flex justify-between items-center ${mobileSubmenuOpen[link.name]
+                          ? "bg-primary/5 text-primary"
+                          : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                          }`}
+                      >
+                        {link.name}
+                        {link.submenu && (
+                          <ChevronDown
+                            className={`w-4 h-4 transition-transform duration-200 ${mobileSubmenuOpen[link.name] ? "rotate-180" : ""
+                              }`}
+                          />
+                        )}
+                      </button>
 
-                  {/* Mobile submenu */}
-                  {link.submenu && mobileSubmenuOpen[link.name] && (
-                    <div className="pl-6 mt-1 space-y-1">
-                      {link.submenu.map((category) => (
-                        <div key={category.title}>
-                          <h4 className="text-xs font-semibold text-primary mb-1">
-                            {category.title}
-                          </h4>
-                          {category.items.map((item) => (
-                            <a
-                              key={item.name}
-                              href={item.href}
-                              onClick={(e) => {
-                                handleNavigation(e, item);
-                                setMobileMenuOpen(false);
-                              }}
-                              className="block px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg transition-colors"
-                            >
-                              {item.name}
-                            </a>
-                          ))}
-                        </div>
-                      ))}
+                      {/* Mobile Submenu */}
+                      <AnimatePresence>
+                        {link.submenu && mobileSubmenuOpen[link.name] && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="overflow-hidden"
+                          >
+                            <div className="pl-6 mt-2 pb-2 space-y-4">
+                              {link.submenu.map((category) => (
+                                <div key={category.title}>
+                                  <h4 className="text-[10px] font-bold text-primary/60 uppercase tracking-widest mb-2 px-3">
+                                    {category.title}
+                                  </h4>
+                                  <div className="space-y-1">
+                                    {category.items.map((item) => (
+                                      <a
+                                        key={item.name}
+                                        href={item.href}
+                                        onClick={(e) => {
+                                          handleNavigation(e, item);
+                                          setMobileMenuOpen(false);
+                                        }}
+                                        className="block px-4 py-2.5 text-sm text-muted-foreground hover:text-foreground hover:bg-primary/5 rounded-lg transition-colors border-l-2 border-transparent hover:border-primary/30"
+                                      >
+                                        {item.name}
+                                      </a>
+                                    ))}
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
-                  )}
+                  ))}
                 </div>
-              ))}
 
-              {/* Mobile Buttons */}
-              <div className="flex flex-col gap-2 pt-4 mt-2 border-t border-border/50 px-4">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="w-full justify-center"
-                  onClick={() => window.open("https://partners.seqpay.in/login", "_blank")}
-                >
-                  Login
-                </Button>
-                <div className="grid grid-cols-2 gap-2">
+                {/* Mobile Action Buttons */}
+                <div className="pt-6 mt-4 border-t border-border/50 flex flex-col gap-3">
                   <Button
-                    size="sm"
-                    className="bg-primary text-white"
+                    variant="ghost"
+                    className="w-full justify-center h-12 rounded-xl text-primary hover:bg-primary/5 border border-primary/10"
                     onClick={() => {
-                      router.push('/retailer')
-                      setMobileMenuOpen(false)
+                      window.open("https://partners.seqpay.in/login", "_blank");
+                      setMobileMenuOpen(false);
                     }}
                   >
-                    Retailer
+                    Partner Login
                   </Button>
-                  <Button
-                    size="sm"
-                    className="bg-blue-600 text-white"
-                    onClick={() => {
-                      router.push('/distributor')
-                      setMobileMenuOpen(false)
-                    }}
-                  >
-                    Distributor
-                  </Button>
+                  <div className="grid grid-cols-2 gap-3">
+                    <Button
+                      className="h-12 rounded-xl bg-primary text-white shadow-lg shadow-primary/20"
+                      onClick={() => {
+                        router.push("/retailer");
+                        setMobileMenuOpen(false);
+                      }}
+                    >
+                      Retailer
+                    </Button>
+                    <Button
+                      className="h-12 rounded-xl bg-blue-600 text-white shadow-lg shadow-blue-600/20"
+                      onClick={() => {
+                        router.push("/distributor");
+                        setMobileMenuOpen(false);
+                      }}
+                    >
+                      Distributor
+                    </Button>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
     </header>
   );
